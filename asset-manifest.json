@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/avtc/static/css/main.b4fdbd47.chunk.css",
-    "main.js": "/avtc/static/js/main.58826fe2.chunk.js",
-    "main.js.map": "/avtc/static/js/main.58826fe2.chunk.js.map",
+    "main.js": "/avtc/static/js/main.f7e50e4b.chunk.js",
+    "main.js.map": "/avtc/static/js/main.f7e50e4b.chunk.js.map",
     "runtime-main.js": "/avtc/static/js/runtime-main.5d3f7765.js",
     "runtime-main.js.map": "/avtc/static/js/runtime-main.5d3f7765.js.map",
     "static/css/2.da0992d8.chunk.css": "/avtc/static/css/2.da0992d8.chunk.css",
@@ -24,6 +24,6 @@
     "static/css/2.da0992d8.chunk.css",
     "static/js/2.6a71b4b6.chunk.js",
     "static/css/main.b4fdbd47.chunk.css",
-    "static/js/main.58826fe2.chunk.js"
+    "static/js/main.f7e50e4b.chunk.js"
   ]
 }
