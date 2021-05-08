@@ -31,22 +31,20 @@ const ItemContainer = styled(motion.ul)`
     margin-inline-start: 0;
     margin-inline-end: 0;
     padding-inline-start: 0;
-
     width: 100vmin;
     /* height: 17.643vmin; */
     /* height: 21.007vmin; */
     /* height: 43vmin; */
     max-width: 1000px;
     display: grid;
-    grid-template-columns: repeat(4, 23.5%);
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
     /* grid-template-rows: repeat(2, 1fr); */
 	/* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
-    align-items: stretch;
-    /* grid-gap: 1vmin; */
-    padding: 2vmin;
+    align-items: start;
+    gap: .5vmin;
+    padding: .5vmin;
     /* background: rgba(255, 255, 255, 0.07); */
-    
+
     background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.3);
     /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
@@ -56,19 +54,18 @@ const ItemContainer = styled(motion.ul)`
 `
 
 const Item = styled(motion.li)`
-    /* height: 21.007vmin; */
+    /* height: 100%; */
     /* background-color: pink; */
     overflow: hidden;
-
     display: grid;
     justify-items: center;
     align-items: center;
 `
 
 const Img = styled(motion.img)`
-    height: 70%;
+    /* height: 70%; */
+    padding-top: 10px;
     max-height: 14vmin;
-
     -webkit-filter: opacity(80%);
     filter: opacity(80%);
 `
@@ -126,7 +123,7 @@ export default function Services() {
                             <Item
                                 key={i[0]}
                                 variants={ItemAnimation}
-                                // whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1.05 }}
                                 >
                                 <Img src={i[0]} alt='tattooIcon' id='tattooIcon'/>
                                 <ItemTitle>{i[1]}</ItemTitle>
