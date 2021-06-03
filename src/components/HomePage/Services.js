@@ -38,13 +38,17 @@ const ItemContainer = styled(motion.ul)`
     /* height: 43vmin; */
     max-width: 1000px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 23.5%);
+    justify-content: center;
     /* grid-template-rows: repeat(2, 1fr); */
 	/* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
     align-items: stretch;
-    gap: 2vmin;
+    /* grid-gap: 1vmin; */
     padding: 2vmin;
-    background: rgba(255, 255, 255, 0.07);
+    /* background: rgba(255, 255, 255, 0.07); */
+    
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
     /* border-radius: 30px; */
     -webkit-filter: drop-shadow(0px 2px 2px #000000);
@@ -122,7 +126,7 @@ export default function Services() {
                             <Item
                                 key={i[0]}
                                 variants={ItemAnimation}
-                                whileHover={{ scale: 1.05 }}
+                                // whileHover={{ scale: 1.05 }}
                                 >
                                 <Img src={i[0]} alt='tattooIcon' id='tattooIcon'/>
                                 <ItemTitle>{i[1]}</ItemTitle>

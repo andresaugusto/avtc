@@ -27,18 +27,18 @@ const ItemContainer = styled(motion.ul)`
     margin-inline-end: 0;
     padding-inline-start: 0;
 
-    width: 100vmin;
-    height: 90.009vmin;
+    /* width: 100vmin;
+    height: 100vmin;
     max-width: 1000px;
-    max-height: 1000px;
+    max-height: 1000px; */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 33%);
     /* grid-template-rows: repeat(2, 1fr); */
 	/* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
     justify-items: stretch;
-    gap: 2vmin;
-    padding: 2vmin;
-    background: rgba(255, 255, 255, 0.07);
+    grid-gap: .5vmin;
+    /* padding: 1vmin; */
+    /* background: rgba(255, 255, 255, 0.07); */
     /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
     /* border-radius: 30px; */
     -webkit-filter: drop-shadow(0px 2px 2px #000000);
@@ -50,23 +50,32 @@ const Item = styled(motion.li)`
     /* max-width: 315.31px; */
     /* width: 25.14433811802233vmin; */
     /* max-height: 315.31px; */
+
+    width: 33vmin;
+    height: 33vmin;
+    max-width: 330px;
+    max-height: 330px;
+
     background-color: rgba(0, 0, 0, 0.5);
     overflow: hidden;
+
 `
 
 const Img = styled(motion.img)`
     display: block;
 
-    min-width: inherit;
-    min-height: inherit;
-    max-height: 45vmin;
+    width: inherit;
+    height: inherit;
+    max-height: 500px;
 
-    margin: 0;
+    margin: auto;
 	padding: 0;
-    -webkit-transform: translate(-50%, -50%);
-    position: relative;
-	left: 50%;
-	top: 50%;
+    /* transform: translate(-50%, -50%); */
+    /* position: relative; */
+	/* left: 50%; */
+	/* top: 50%; */
+
+    /* justify-content: center; */
 
     object-fit: cover;
     -webkit-filter: grayscale(0%);
@@ -79,16 +88,39 @@ const ItemTitle = styled.h1`
 `
 
 const Li = styled(motion.li)`
-    background-color: rgba(0, 0, 0, 0.3);
-    overflow: hidden;
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 33vmin;
+    height: 33vmin;
+    max-width: 330px;
+    max-height: 330px;
+
+    overflow: hidden;
     display: grid;
     align-items: center;
     justify-content: center;
+
+    /* background-color: rgba(0, 0, 0, 0.3); */
+    /* border: 1px solid rgba(255, 255, 255, 0.3); */
+    box-sizing: content-box;
+`
+const LiWithBorder = styled(motion.li)`
+
+    width: 33vmin;
+    height: 33vmin;
+    max-width: 330px;
+    max-height: 330px;
+
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: content-box;
 `
 
-const P = styled.p`
+const P = styled(motion.p)`
     color: rgba(255, 255, 255, 0.7);
 `
 
@@ -160,7 +192,6 @@ export default function GalleryPeek() {
         setShowPiece(!showPiece)
     }
 
-
     //  //  //  FUNCTIONS    //  //  //
 
     return (
@@ -175,31 +206,51 @@ export default function GalleryPeek() {
                             <Item
                                 key={i.slug}
                                 variants={ItemAnimation}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.9 }}
-                                transition={{ duration: 0.2 }}
                                 onClick={() => fetchPiece(i.slug)}
                                 >
-                                    <Img src={i.art_image} alt={i.title} id={i.slug} />
+                                    <Li>
+                                        <Img
+                                            src={i.art_image}
+                                            alt={i.title}
+                                            id={i.slug}
+                                        
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            transition={{ duration: 0.2 }}
+                                            />
+                                    </Li>                          
                             </Item>
                         ))}
-                        <Li 
+                        <LiWithBorder 
                             variants={ItemAnimation}
-                            whileHover={{ scale: 1.05 }}>
+                            >
                             <Link to='/gallery'>
-                                <P>VIEW FULL GALLERY</P>
+                                <P
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ duration: 0.2 }}
+                                    >
+                                        VIEW FULL GALLERY
+                                </P>
                             </Link>
-                        </Li>
+                        </LiWithBorder>
                         {gallery.slice(5,9).map((i) => (
                             <Item
                                 key={i.slug}
                                 variants={ItemAnimation}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.9 }}
-                                transition={{ duration: 0.2 }}
                                 onClick={() => fetchPiece(i.slug)}
                                 >
-                                    <Img src={i.art_image} alt={i.title} id={i.slug} />
+                                    <Li>
+                                        <Img
+                                            src={i.art_image}
+                                            alt={i.title}
+                                            id={i.slug}
+                                        
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            transition={{ duration: 0.2 }}
+                                            />
+                                    </Li>                          
                             </Item>
                         ))}
                 </ItemContainer>

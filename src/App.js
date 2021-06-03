@@ -1,25 +1,25 @@
-import { useState, useEffect, useContext, useMemo } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useState, useEffect, useContext, useMemo } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { Frame, Scroll, useCycle } from 'framer'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
-import ArtistProfile from './components/ArtistProfile'
-import Gallery from './components/Gallery'
-import Home from './components/Home'
-import NavBar from './components/NavBar'
-import PieceModal from './components/PieceModal'
+import ArtistProfile from "./components/ArtistProfile";
+import Gallery from "./components/Gallery";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+import PieceModal from "./components/PieceModal";
 
-import { PieceContext, PieceModalToggleContext } from './helperFunctions/avtcContext'
-import { DBURL } from './helperFunctions/config'
+import {
+  PieceContext,
+  PieceModalToggleContext,
+} from "./helperFunctions/avtcContext";
+import { DBURL } from "./helperFunctions/config";
 
-import main_bg_img from './images/BGImg.png'
-import bottom_bg_img from './images/streetViewCrop.png'
+import main_bg_img from "./images/BGImg.png";
+import bottom_bg_img from "./images/streetViewCrop.png";
 
-import './App.css'
-
-
-
+import "./App.css";
 
 //  //  //  STYLED-COMPONENTS   //  //  //
 
@@ -35,8 +35,8 @@ const Body = styled.div`
   /* align-items: center; */
   /* justify-content: center; */
   color: rgb(255, 255, 255);
-  font-family: 'New Rocker';
-`
+  font-family: "New Rocker";
+`;
 
 //  // FOR STUDY  //  //
 // const MainBGImg = styled(motion.div)`
@@ -62,9 +62,11 @@ const MainBGImg = styled(motion.img)`
   overflow: hidden;
   left: 50%;
   top: 0%;
-  -webkit-filter: blur(6px) brightness(40%) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) opacity(69%);
-  filter: blur(6px) brightness(40%) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) opacity(69%);
-`
+  -webkit-filter: blur(6px) brightness(40%)
+    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) opacity(69%);
+  filter: blur(6px) brightness(40%) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+    opacity(69%);
+`;
 
 const BottomBGImg = styled(motion.img)`
   z-index: -90;
@@ -73,7 +75,7 @@ const BottomBGImg = styled(motion.img)`
   margin-left: auto;
   margin-right: auto;
   width: 100vw;
-  
+
   -webkit-transform: translate(0%, 0%);
   /* position: fixed; */
   /* overflow: hidden; */
@@ -82,40 +84,41 @@ const BottomBGImg = styled(motion.img)`
 
   -webkit-filter: drop-shadow(0px 2px 2px #000000);
   filter: drop-shadow(0px 2px 2px #000000);
-`
-
+`;
 
 //  //  //  FUNCTION    //  //  //
 
 export default function App() {
-
-
   //  //  //  PIECE MASTER SETTINGS  //  //  //
 
-  const [ piece, setPiece ] = useState(null)
-  const providerPiece = useMemo (() =>  ({ piece, setPiece }), [ piece, setPiece ])
+  const [piece, setPiece] = useState(null);
+  const providerPiece = useMemo(() => ({ piece, setPiece }), [piece, setPiece]);
 
-  const [ showPiece, setShowPiece ] = useState(false)
-  const providerShowPiece = useMemo (() =>  ({ showPiece, setShowPiece }), [ showPiece, setShowPiece ])
-
-
-
+  const [showPiece, setShowPiece] = useState(false);
+  const providerShowPiece = useMemo(
+    () => ({ showPiece, setShowPiece }),
+    [showPiece, setShowPiece]
+  );
 
   //  //  //  RENDER    //  //  //
 
   return (
     <div className="App">
-        <PieceContext.Provider value={ providerPiece }>
-          <PieceModalToggleContext.Provider value={ providerShowPiece }>
-            <NavBar />
-            <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/gallery' component={Gallery} />
-                <Route exact path='/artists/:artistSlug' component={ArtistProfile} />
-            </Switch>
-          </PieceModalToggleContext.Provider>
-        </PieceContext.Provider>
-        <MainBGImg src={main_bg_img} />
+      <PieceContext.Provider value={providerPiece}>
+        <PieceModalToggleContext.Provider value={providerShowPiece}>
+          <NavBar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/gallery" component={Gallery} />
+            <Route
+              exact
+              path="/artists/:artistSlug"
+              component={ArtistProfile}
+            />
+          </Switch>
+        </PieceModalToggleContext.Provider>
+      </PieceContext.Provider>
+      <MainBGImg src={main_bg_img} />
     </div>
-  )
+  );
 }
