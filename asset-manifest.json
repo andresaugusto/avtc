@@ -1,29 +1,30 @@
 {
   "files": {
-    "main.css": "/avtc/static/css/main.b4fdbd47.chunk.css",
-    "main.js": "/avtc/static/js/main.fcbf1225.chunk.js",
-    "main.js.map": "/avtc/static/js/main.fcbf1225.chunk.js.map",
+    "main.css": "/avtc/static/css/main.80722883.chunk.css",
+    "main.js": "/avtc/static/js/main.cabca6bd.chunk.js",
+    "main.js.map": "/avtc/static/js/main.cabca6bd.chunk.js.map",
     "runtime-main.js": "/avtc/static/js/runtime-main.965e680b.js",
     "runtime-main.js.map": "/avtc/static/js/runtime-main.965e680b.js.map",
-    "static/css/2.da0992d8.chunk.css": "/avtc/static/css/2.da0992d8.chunk.css",
-    "static/js/2.89c518d2.chunk.js": "/avtc/static/js/2.89c518d2.chunk.js",
-    "static/js/2.89c518d2.chunk.js.map": "/avtc/static/js/2.89c518d2.chunk.js.map",
+    "static/css/2.1d287cf9.chunk.css": "/avtc/static/css/2.1d287cf9.chunk.css",
+    "static/js/2.0022d621.chunk.js": "/avtc/static/js/2.0022d621.chunk.js",
+    "static/js/2.0022d621.chunk.js.map": "/avtc/static/js/2.0022d621.chunk.js.map",
     "static/js/3.14ebf5eb.chunk.js": "/avtc/static/js/3.14ebf5eb.chunk.js",
     "static/js/3.14ebf5eb.chunk.js.map": "/avtc/static/js/3.14ebf5eb.chunk.js.map",
     "index.html": "/avtc/index.html",
-    "static/css/2.da0992d8.chunk.css.map": "/avtc/static/css/2.da0992d8.chunk.css.map",
-    "static/css/main.b4fdbd47.chunk.css.map": "/avtc/static/css/main.b4fdbd47.chunk.css.map",
-    "static/js/2.89c518d2.chunk.js.LICENSE.txt": "/avtc/static/js/2.89c518d2.chunk.js.LICENSE.txt",
+    "static/css/2.1d287cf9.chunk.css.map": "/avtc/static/css/2.1d287cf9.chunk.css.map",
+    "static/css/main.80722883.chunk.css.map": "/avtc/static/css/main.80722883.chunk.css.map",
+    "static/js/2.0022d621.chunk.js.LICENSE.txt": "/avtc/static/js/2.0022d621.chunk.js.LICENSE.txt",
     "static/media/BGImg.fbd6d179.png": "/avtc/static/media/BGImg.fbd6d179.png",
     "static/media/HomeHeader.0e415d1d.png": "/avtc/static/media/HomeHeader.0e415d1d.png",
     "static/media/slick-theme.css": "/avtc/static/media/slick.c94f7671.ttf",
+    "static/media/streetViewCrop (2).2f7525db.png": "/avtc/static/media/streetViewCrop (2).2f7525db.png",
     "static/media/streetViewCrop.78c6ec9f.png": "/avtc/static/media/streetViewCrop.78c6ec9f.png"
   },
   "entrypoints": [
     "static/js/runtime-main.965e680b.js",
-    "static/css/2.da0992d8.chunk.css",
-    "static/js/2.89c518d2.chunk.js",
-    "static/css/main.b4fdbd47.chunk.css",
-    "static/js/main.fcbf1225.chunk.js"
+    "static/css/2.1d287cf9.chunk.css",
+    "static/js/2.0022d621.chunk.js",
+    "static/css/main.80722883.chunk.css",
+    "static/js/main.cabca6bd.chunk.js"
   ]
 }
