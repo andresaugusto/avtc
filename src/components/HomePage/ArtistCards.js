@@ -1,23 +1,22 @@
-import { useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { useCycle } from 'framer'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
+import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useCycle } from "framer";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
 // import { PieceContext, PieceModalToggleContext } from '../../helperFunctions/avtcContext'
-import { DBURL } from '../../helperFunctions/config'
-
+import { DBURL } from "../../helperFunctions/config";
 
 //  //  //  STYLED-COMPONENTS   //  //  //
 
 const Section = styled.section`
-    overflow: hidden;
-    padding: 0;
-    margin: 3vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  overflow: hidden;
+  padding: 0;
+  margin: 3vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ItemContainer = styled(motion.ul)`
     padding: 0;
@@ -46,166 +45,155 @@ const ItemContainer = styled(motion.ul)`
     /* border-radius: 30px; */
     -webkit-filter: drop-shadow(0px 2px 2px #000000);
     filter: drop-shadow(0px 2px 2px #000000);
-
-
+	
 	border-top: 1px solid rgba(255, 255, 255, 0.7);
 `
 
 const Item = styled(motion.li)`
-    /* width: 25.14433811802233vmin; */
-    /* max-width: 333px; */
-    /* width: 25.14433811802233vmin; */
-    /* max-height: 333px; */
-    /* background-color: rgba(0, 0, 0, 0.5); */
-
-    width: 30vmin;
-    height: 30vmin;
-    max-width: 300px ;
-    max-height: 300px ;
-
-    overflow: hidden;
-`
+  /* width: 25.14433811802233vmin; */
+  /* max-width: 333px; */
+  /* width: 25.14433811802233vmin; */
+  /* max-height: 333px; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  width: 30vmin;
+  height: 45vmin;
+  max-width: 300px;
+  max-height: 500px;
+  overflow: hidden;
+`;
 
 const Img = styled(motion.img)`
-    display: block;
+  display: block;
 
-    min-width: inherit;
-    min-height: inherit;
-    max-height: 45vmin;
+  min-width: inherit;
+  min-height: inherit;
+  max-height: 30vmin;
+  margin: 0;
+  padding: 0;
+  /* transform: translate(0%, 0%); */
+  /* position: relative; */
+  left: 50%;
+  top: 0%;
 
-    margin: 0;
-    padding: 0;
-    /* transform: translate(0%, 0%); */
-    /* position: relative; */
-    left: 50%;
-    top: 0%;
-
-    object-fit: cover;
-    -webkit-filter: grayscale(0%);
-    filter: grayscale(0%);
-`
-
+  object-fit: cover;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+`;
 
 const ItemTitle = styled.h1`
-    font-size: 15px;
-    width: 100%;
-`
+  font-size: 3vmin;
+  width: 100%;
+`;
 
 const Li = styled(motion.li)`
-    background-color: rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    display: grid;
-    align-items: center;
-    justify-content: center;
-`
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+`;
 
 const P = styled.p`
-    color: rgba(255, 255, 255, 0.7);
-`
+  color: rgba(255, 255, 255, 0.7);
+`;
 
+const ArtistTitle = styled.h1`
+  font-size: 5vmin;
+`;
 
 //  //  //  VARIABLES   //  //  //
 
 const ItemContainerAnimation = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-        delayChildren: 1.3,
-        staggerChildren: 0.5
-        }
-    }
-};
-  
-const ItemAnimation = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1
-    }
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 1.3,
+      staggerChildren: 0.5,
+    },
+  },
 };
 
+const ItemAnimation = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 //  //  //  FUNCTION    //  //  //
 
 export default function ArtistsPeek() {
+  //  //  //  DATA FETCHING FROM DB   //  //  //
 
+  useEffect(() => {
+    fetchArtists();
+  }, []);
 
-    //  //  //  DATA FETCHING FROM DB   //  //  //
-  
-    useEffect(() => {fetchArtists()}, []);
+  const [artists, setArtists] = useState([]);
 
-    const [ artists, setArtists ] = useState([]);
-  
-    const fetchArtists = async () => {
-      
-      const rtstsData = await fetch(`${DBURL}/artists`)
-      const rtsts = await rtstsData.json();
+  const fetchArtists = async () => {
+    const rtstsData = await fetch(`${DBURL}/artists`);
+    const rtsts = await rtstsData.json();
 
-      setArtists(rtsts)
-      
-    }
+    setArtists(rtsts);
+  };
 
+  // //  //  //  PIECE SETTINGS    //  //  //
 
-    // //  //  //  PIECE SETTINGS    //  //  //
+  // const { setPiece } = useContext(PieceContext)
+  // const { showPiece, setShowPiece } = useContext(PieceModalToggleContext)
 
-    // const { setPiece } = useContext(PieceContext)
-    // const { showPiece, setShowPiece } = useContext(PieceModalToggleContext)
+  // const fetchPiece = async (i) => {
 
-    // const fetchPiece = async (i) => {
-      
-    //     const picData = await fetch(`${DBURL}/gallery/${i}`)
-    //     const pic = await picData.json();
+  //     const picData = await fetch(`${DBURL}/gallery/${i}`)
+  //     const pic = await picData.json();
 
-    //     setPiece(
-    //         {
-    //             title: pic.title,
-    //             slug: pic.slug,
-    //             img: pic.art_image,
-    //             artistSlug: pic.artist_id,
-    //             artistName: pic.artist_name
-    //         }
-    //     )
+  //     setPiece(
+  //         {
+  //             title: pic.title,
+  //             slug: pic.slug,
+  //             img: pic.art_image,
+  //             artistSlug: pic.artist_id,
+  //             artistName: pic.artist_name
+  //         }
+  //     )
 
-    //     setShowPiece(!showPiece)
-    // }
+  //     setShowPiece(!showPiece)
+  // }
 
+  //  //  //  FUNCTIONS    //  //  //
 
-    //  //  //  FUNCTIONS    //  //  //
-
-    return (
-        <>
-            <Section>
-                <ItemContainer
-                    variants={ItemContainerAnimation}
-                    initial="hidden"
-                    animate="visible"
-                    >
-                        {artists.map((i) => (
-                                <Item
-                                    key={i.slug}
-                                    variants={ItemAnimation}
-                                    >
-                                        <Link className='links' to={`/artists/${i.slug}`}>
-                                            <Img 
-                                                src={i.profile_image}
-                                                alt={i.name}
-                                                id={i.slug}
-                                                
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.9 }}
-                                                transition={{ duration: 0.2 }}
-                                            />
-                                        </Link>
-                                        {/* <h1>{i.name}</h1> */}
-
-                                </Item>
-                        ))}
-                </ItemContainer>
-            </Section>
-        </>
-    )
+  return (
+    <>
+      <ArtistTitle>Resident Artists</ArtistTitle>
+      <Section>
+        <ItemContainer
+          variants={ItemContainerAnimation}
+          initial="hidden"
+          animate="visible"
+        >
+          {artists.map((i) => (
+            <Item key={i.slug} variants={ItemAnimation}>
+              <ItemTitle>{i.name}</ItemTitle>
+              <Link className="links" to={`/artists/${i.slug}`}>
+                <Img
+                  src={i.profile_image}
+                  alt={i.name}
+                  id={i.slug}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </Link>
+            </Item>
+          ))}
+        </ItemContainer>
+      </Section>
+    </>
+  );
 }
