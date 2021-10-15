@@ -120,7 +120,17 @@ const LiWithBorder = styled(motion.li)`
     box-sizing: content-box;
 `
 
-const P = styled(motion.p)`
+const FullGalDiv = styled(motion.div)`
+
+    width: 30vmin;
+    height: 30vmin;
+    max-width: 300px;
+    max-height: 300px;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
     color: rgba(255, 255, 255, 0.7);
 `
 
@@ -225,13 +235,13 @@ export default function GalleryPeek() {
                             variants={ItemAnimation}
                             >
                             <Link to='/gallery'>
-                                <P
+                                <FullGalDiv
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     transition={{ duration: 0.2 }}
                                     >
                                         VIEW FULL GALLERY
-                                </P>
+                                </FullGalDiv>
                             </Link>
                         </LiWithBorder>
                         {gallery.slice(5,9).map((i) => (

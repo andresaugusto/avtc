@@ -19,39 +19,35 @@ const Section = styled.section`
 `;
 
 const ItemContainer = styled(motion.ul)`
-  padding: 0;
-  list-style-type: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-inline-start: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
 
-  width: 300vmin;
-  /* height: 90.009vmin; */
-
-  /* max width 1000px will keep it same size as the gallery on full screen */
-
-  max-width: 1000px;
-  /* max-height: 1000px; */
-  display: grid;
-  grid-template-columns: repeat(3, 30%);
-  /* grid-template-rows: repeat(2, 1fr); */
-  /* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
-  justify-content: center;
-  align-content: center;
-  grid-gap: 1vmin;
-  /* padding: 2vmin 0 2vmin 0; */
-  /* background: rgba(255, 255, 255, 0.07); */
-  /* background: pink; */
-  /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
-  /* border-radius: 30px; */
-  -webkit-filter: drop-shadow(0px 2px 2px #000000);
-  filter: drop-shadow(0px 2px 2px #000000);
-
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-  /* background-color: rgba(0, 0, 0, 0.5); */
-`;
+    width: 100vmin;
+    /* height: 90.009vmin; */
+    max-width: 1000px;
+    /* max-height: 1000px; */
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    /* grid-template-rows: repeat(2, 1fr); */
+	/* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
+    justify-content: center;
+    align-content: center;
+    grid-gap: 1vmin;
+    /* padding: 2vmin 0 2vmin 0; */
+    /* background: rgba(255, 255, 255, 0.07); */
+    /* background: pink; */
+    /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
+    /* border-radius: 30px; */
+    -webkit-filter: drop-shadow(0px 2px 2px #000000);
+    filter: drop-shadow(0px 2px 2px #000000);
+	
+	border-top: 1px solid rgba(255, 255, 255, 0.7);
+`
 
 const Item = styled(motion.li)`
   /* width: 25.14433811802233vmin; */
