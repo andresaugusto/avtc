@@ -20,8 +20,6 @@ const Section = styled.section`
 `
 
 const ItemContainer = styled(motion.ul)`
-    
-    
     padding: 0;
     list-style-type: none;
     margin-block-start: 0;
