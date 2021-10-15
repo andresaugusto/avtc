@@ -20,8 +20,11 @@ const Section = styled.section`
 
 const ItemContainer = styled(motion.ul)`
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> artistCards revert
   padding: 0;
   list-style-type: none;
   margin-block-start: 0;
@@ -55,6 +58,7 @@ const ItemContainer = styled(motion.ul)`
   border-top: 1px solid rgba(255, 255, 255, 0.7);
   /* background-color: rgba(0, 0, 0, 0.5); */
 `;
+<<<<<<< HEAD
 =======
 >>>>>>> formatting adjustments
     padding: 0;
@@ -94,6 +98,8 @@ const ItemContainer = styled(motion.ul)`
 `
 >>>>>>> formatting adjustments
 >>>>>>> formatting adjustments
+=======
+>>>>>>> artistCards revert
 
 const Item = styled(motion.li)`
   /* width: 25.14433811802233vmin; */
