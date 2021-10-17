@@ -12,10 +12,10 @@ import {
 } from "../helperFunctions/avtcContext";
 import { DBURL } from "../helperFunctions/config";
 
-import bottom_bg_img from "../images/streetViewCrop.png";
-import iconInstagram from "../images/iconInstagram.png";
-import iconFacebook from "../images/iconFacebook.png";
-import iconCalendar from "../images/iconCalendar.png";
+import bottom_bg_img from "../media/streetViewCrop.png";
+import iconInstagram from "../media/iconInstagram.png";
+import iconFacebook from "../media/iconFacebook.png";
+import iconCalendar from "../media/iconCalendar.png";
 
 //Page where artist profile is composed
 

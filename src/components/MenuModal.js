@@ -18,8 +18,11 @@ const Container = styled(motion.div)`
     z-index: 50;
     top: 0;
     position: fixed;
-    background: linear-gradient(180deg, rgba(255, 206, 132, 0.9) -3.44%, rgba(255, 207, 135, 0.41) 79.87%, rgba(255, 207, 135, 0.33144) 93.74%, rgba(255, 207, 135, 0.28) 100%), rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(15px);
+    /* background: linear-gradient(180deg, rgba(255, 206, 132, 0.9) -3.44%, rgba(255, 207, 135, 0.41) 79.87%, rgba(255, 207, 135, 0.33144) 93.74%, rgba(255, 207, 135, 0.28) 100%), rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(15px); */
+
+    backdrop-filter: invert(0%) sepia(70%) hue-rotate(155deg) blur(15px);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) -3.44%, rgba(0, 0, 0, 0.41) 79.87%, rgba(0, 0, 0, 0.33144) 93.74%, rgba(0, 0, 0, 0.28) 100%), rgba(0, 0, 0, 0.22);
 `
 
 const UL = styled(motion.ul)`

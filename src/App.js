@@ -16,8 +16,10 @@ import {
 } from "./helperFunctions/avtcContext";
 import { DBURL } from "./helperFunctions/config";
 
-import main_bg_img from "./images/BGImg.png";
-import bottom_bg_img from "./images/streetViewCrop.png";
+import main_bg_img from "./media/BGImg.png";
+import main_bg_video_mp4 from "./media/BGVideo/ink_in_the_skin-tatoo-reel-1080p.mp4";
+import main_bg_video_webm from "./media/BGVideo/ink_in_the_skin-tatoo-reel-1080p.webm";
+import bottom_bg_img from "./media/streetViewCrop.png";
 
 import "./App.css";
 
@@ -68,6 +70,25 @@ const MainBGImg = styled(motion.img)`
     opacity(69%);
 `;
 
+const MainBGVideo = styled(motion.video)`
+  z-index: -100;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vmax;
+
+  -webkit-transform: translate(-50%, 0%);
+  position: fixed;
+  overflow: hidden;
+  left: 50%;
+  top: 0%;
+  /* -webkit-filter: blur(6px) brightness(40%)
+    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) opacity(69%); */
+  /* filter: blur(6px) brightness(40%) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+    opacity(69%); */
+`;
+
 const BottomBGImg = styled(motion.img)`
   z-index: -90;
 
@@ -82,13 +103,19 @@ const BottomBGImg = styled(motion.img)`
   left: 50%;
   bottom: 0%;
 
-  -webkit-filter: drop-shadow(0px 2px 2px #000000);
-  filter: drop-shadow(0px 2px 2px #000000);
+  -webkit-filter:  brightness(10%) drop-shadow(0px 2px 2px #000000);
+  filter:  brightness(10%) drop-shadow(0px 2px 2px #000000);
 `;
 
 //  //  //  FUNCTION    //  //  //
 
 export default function App() {
+
+  //  //  //  BACKGROUND FADE   //  //  //
+
+  // const 
+
+
   //  //  //  PIECE MASTER SETTINGS  //  //  //
 
   const [piece, setPiece] = useState(null);
@@ -119,6 +146,10 @@ export default function App() {
         </PieceModalToggleContext.Provider>
       </PieceContext.Provider>
       <MainBGImg src={main_bg_img} />
+      {/* <MainBGVideo playsinline autoplay muted loop id="videoId">
+        <source src={main_bg_video_mp4} type="video/mp4"/>
+        <source src={main_bg_video_webm} type="video/webm"/>
+      </MainBGVideo> */}
     </div>
   );
 }

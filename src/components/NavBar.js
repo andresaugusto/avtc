@@ -8,8 +8,8 @@ import MenuModal from './MenuModal'
 import PieceModal from './PieceModal'
 
 import { PieceModalToggleContext } from '../helperFunctions/avtcContext'
-import menu from '../images/+.png'
-import AVTC from '../images/AVTC.png'
+import menu from '../media/+.png'
+import AVTC from '../media/AVTC.png'
 
 
 
@@ -18,7 +18,7 @@ import AVTC from '../images/AVTC.png'
 
 const Nav = styled.header`
     width: 100vw;
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 100;
     display: flex;

@@ -46,6 +46,7 @@ const ItemContainer = styled(motion.ul)`
 `
 
 const Item = styled(motion.li)`
+    filter: saturate(22%);
     /* width: 25.14433811802233vmin; */
     /* max-width: 315.31px; */
     /* width: 25.14433811802233vmin; */
@@ -62,6 +63,7 @@ const Item = styled(motion.li)`
 `
 
 const Img = styled(motion.img)`
+    filter: sepia(30%) hue-rotate(335deg);
     display: block;
 
     width: inherit;

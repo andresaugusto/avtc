@@ -168,6 +168,8 @@ export default function ArtistsPeek() {
 
   //  //  //  FUNCTIONS    //  //  //
 
+  const [ scrollPositionY, setScrollPositionY ] = useState(window.scrollY)
+
   return (
     <>
       <ArtistTitle>Resident Artists</ArtistTitle>

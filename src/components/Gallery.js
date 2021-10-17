@@ -4,7 +4,7 @@ import styled from "styled-components";
 import GalleryCarousel from "./Gallery/GalleryCarousel";
 import OriginalGallery from "./Gallery/OriginalGallery";
 
-import bottom_bg_img from "../images/streetViewCrop.png";
+import bottom_bg_img from "../media/streetViewCrop.png";
 
 //  //  //  STYLED COMPONENTS   //  //  //
 
