@@ -14,7 +14,26 @@ const GalleryPeekSection = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: invert(100%) sepia(50%) hue-rotate(335deg);
+`
+const SectionTitle = styled.div`
+    width: 100vw;
+    margin-bottom: 4vmin;
+
+    color: black;
+    /* font-family: 'New Rocker', serif; */
+    font-family: 'Quantico', sans-serif;
+    /* font-family: 'Hepta Slab', serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Six Caps', sans-serif; */
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
+    font-weight: 700;
+
+    @media (max-width: 600px) {
+        font-size: 16px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
 `
 
 const PieceCardContainer = styled(motion.div)`
@@ -22,7 +41,7 @@ const PieceCardContainer = styled(motion.div)`
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    padding: 4vmin .5vmin;
+    padding: 0vmin .5vmin 10vw .5vmin;
 
     display: flex;
     flex-flow: row wrap;
@@ -30,8 +49,8 @@ const PieceCardContainer = styled(motion.div)`
     justify-content: stretch;
     align-items: stretch;
 
-    -webkit-filter: drop-shadow(0px 2px 2px #000000);
-    filter: drop-shadow(0px 2px 2px #000000);
+    /* -webkit-filter: drop-shadow(0px 2px 2px #000000);
+    filter: drop-shadow(0px 2px 2px #000000); */
 `
 
 const PieceCard = styled(motion.div)`
@@ -46,50 +65,31 @@ const PieceCard = styled(motion.div)`
     justify-content: center; */
     flex-grow: 1;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: black;
 	background-position: 50% 50%;
 	background-size: cover;
     filter: saturate(25%);
     /* transition: .05s ease-in; */
-
-    &:hover {
-        filter: sepia(25%) saturate(50%) contrast(70%) brightness(140%);
-    }
-
-`
-
-const PieceCardPlaceholder = styled(motion.div)`
-
-    box-sizing: border-box;
-    min-width: 18vw;
-    min-height: 40vh;
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-grow: 1;
-
-    background-color: black;
+    border: black 1px solid;
 
     &:hover {
         background-color: white;
         color: black;
+        filter: sepia(25%) saturate(50%) contrast(70%) brightness(140%);
     }
 `
 
 const GalleryLink = styled(motion.div)`
-
+	height: inherit;
+	min-width: 18vw;
     width: 40vw;
-    /* height: 30vmin; */
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    
-    /* color: black; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+
+	/* color: white; */
     /* font-family: 'New Rocker', serif; */
     font-family: 'Quantico', sans-serif;
     /* font-family: 'Hepta Slab', serif; */
@@ -100,13 +100,14 @@ const GalleryLink = styled(motion.div)`
     font-weight: 700;
     text-align: center;
     transform: rotateZ(90deg);
+    text-transform: uppercase;
 
     @media (max-width: 600px) {
         font-size: 11px;
         letter-spacing: 2px;
         font-weight: 400;
     }
-`
+`;
 
 // const Img = styled(motion.img)`
 //     filter: sepia(30%) hue-rotate(335deg);
@@ -132,7 +133,7 @@ const GalleryLink = styled(motion.div)`
 
 const ItemTitle = styled.h1`
     font-size: 15px;
-    width: 100%;
+    width: 40vw;
 `
 
 const PieceCardSection = styled(motion.div)`
@@ -222,6 +223,7 @@ export default function GalleryPeek() {
 
     return (
         <>
+                <SectionTitle>PIECES</SectionTitle>
             <GalleryPeekSection>
                 <PieceCardContainer
                     variants={ItemContainerAnimation}
@@ -234,33 +236,24 @@ export default function GalleryPeek() {
                                 variants={ItemAnimation}
                                 onClick={() => fetchPiece(i.slug)}
                                 style={{ backgroundImage: `url(${i.art_image})`}}
-                                >
-                                    <PieceCardSection>
-                                        {/* <Img
-                                            src={i.art_image}
-                                            alt={i.title}
-                                            id={i.slug}
-                                        
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            transition={{ duration: 0.2 }}
-                                            /> */}
-                                    </PieceCardSection>                          
+                                >                    
                             </PieceCard>
                         ))}
-                        <PieceCardPlaceholder 
+                        {/* <PieceCardPlaceholder 
                             variants={ItemAnimation}
-                            >
-                            <Link to='/gallery'>
-                                <GalleryLink
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    transition={{ duration: 0.2 }}
-                                    >
-                                        VIEW FULL GALLERY
-                                </GalleryLink>
-                            </Link>
-                        </PieceCardPlaceholder>
+                            > */}
+                            <PieceCard
+                                key="link-to-gallery"
+                                >
+                                <Link to='/gallery'
+                                style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                                >
+                                    <GalleryLink>
+                                            VIEW FULL GALLERY
+                                    </GalleryLink>
+                                </Link>
+                            </PieceCard>
+                        {/* </PieceCardPlaceholder> */}
                 </PieceCardContainer>
             </GalleryPeekSection>
         </>

@@ -20,72 +20,100 @@ import streetViewCrop from "../media/streetViewCrop.png";
 //  //  //  STYLED-COMPONENTS   //  //  //
 
 const HomePageSection = styled(motion.section)`
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `;
 
 const HomeWelcomeSection = styled(motion.section)`
-  width: 100vw;
-  overflow: hidden;
-  background: rgba(0, 0, 0, .5);
-  padding-bottom: 15vh;
-`
-
-
+	width: 100vw;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.5);
+	padding-bottom: 15.5vh;
+`;
 
 const HomeHeader = styled(motion.section)`
-  backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg);
-  box-sizing: border-box;
-  /* position: relative; */
-  height: 100vh;
-  width: 400vw;
-  overflow: hidden;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(-25vh) rotateZ(-12deg);
-  transform-origin: center;
+	backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg);
+	box-sizing: border-box;
+	/* position: relative; */
+	height: 100vh;
+	width: 400vw;
+	overflow: hidden;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(-25vh) rotateZ(-12deg);
+	transform-origin: center;
 `;
 
 const HomeHeaderImg = styled.img`
-  height: 50vmin;
-  min-height: 150px;
-  max-height: 444px;
+	height: 50vmin;
+	min-height: 150px;
+	max-height: 444px;
 
-  /* -webkit-filter: drop-shadow(0px 2px 2px #000000);
+	/* -webkit-filter: drop-shadow(0px 2px 2px #000000);
   filter: drop-shadow(0px 2px 2px #000000); */
-  -webkit-filter: invert(0%);
-  filter: invert(0%);
+	-webkit-filter: invert(0%);
+	filter: invert(0%);
 
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  transform: rotateZ(12deg) translateY(+25vh);
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	transform: rotateZ(12deg) translateY(+25vh);
+`;
+
+const HomeWorkSection = styled(motion.section)`
+	width: 100vw;
+	overflow: hidden;
+	backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg);
+	/* background: rgba(0, 0, 0, .5); */
+	padding: 15.5vh 0 20vh 0;
+`;
+
+const HomeFooterSection = styled(motion.section)`
+	width: 100vw;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.5);
+	padding-bottom: 15.5vh;
+`;
+
+const HomeFooter = styled(motion.section)`
+	backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg);
+	box-sizing: border-box;
+	/* position: relative; */
+	height: 100vh;
+	width: 400vw;
+	overflow: hidden;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(25vh) rotateZ(-12deg);
+	transform-origin: center;
 `;
 
 const BottomBGImg = styled(motion.img)`
-  z-index: 0;
-  width: 100vw;
+	z-index: 0;
+	width: 100vw;
 
-  margin: 0;
-  padding: 0;
-  -webkit-transform: translate(-50%, 0%);
-  position: relative;
-  /* top: -100%; */
-  left: 50%;
+	margin: 0;
+	padding: 0;
+	-webkit-transform: translate(-50%, 0%);
+	position: absolute;
+	/* top: -100%; */
+	left: 50%;
 
-  /* -webkit-filter: drop-shadow(0px 2px 2px #000000); */
-  /* filter: drop-shadow(0px 2px 2px #000000); */
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
+	/* -webkit-filter: drop-shadow(0px 2px 2px #000000); */
+	/* filter: drop-shadow(0px 2px 2px #000000); */
+	-webkit-filter: invert(100%);
+	filter: invert(100%);
 `;
 
 // const ArtistSectionTitle = styled.h1`
@@ -98,48 +126,46 @@ const BottomBGImg = styled(motion.img)`
 //  //  //  FUNCTION    //  //  //
 
 export default function Home() {
+	//  //  //  CONSTS  //  //  //
 
-  //  //  //  CONSTS  //  //  //
+	const [scrollPositionY, setScrollPositionY] = useState(0);
 
-  const [scrollPositionY, setScrollPositionY] = useState(0);
+	//  //  //  RETURN  //  //  //
 
-
-  //  //  //  RETURN  //  //  //
-
-  return (
-    <>
-      <head>
-        <script src="pace.min.js"></script>
-        <link rel="stylesheet" href="pace-theme-default.min.css" />
-      </head>
-      {() => setScrollPositionY(window.scrollY)}
-      <HomeWelcomeSection>
-        <HomePageSection>
-          <HomeHeader>
-            <HomeHeaderImg
-              id="HomeHeaderImg"
-              src={HeaderImg}
-              alt="Specialty American Traditional Tattoo Shop"
-            />
-          </HomeHeader>
+	return (
+		<>
+			<head>
+				<script src="pace.min.js"></script>
+				<link rel="stylesheet" href="pace-theme-default.min.css" />
+			</head>
+			{() => setScrollPositionY(window.scrollY)}
+			<HomeWelcomeSection>
+				<HomePageSection>
+					<HomeHeader>
+						<HomeHeaderImg
+							id="HomeHeaderImg"
+							src={HeaderImg}
+							alt="Specialty American Traditional Tattoo Shop"
+						/>
+					</HomeHeader>
+				</HomePageSection>
+				<Services />
+			</HomeWelcomeSection>
+			<HomeWorkSection>
+				<GalleryPeek />
+				<ArtistCards />
+			</HomeWorkSection>
+			<HomeFooterSection>
+				<HomePageSection>
+          <MerchandisePeek style={{ transform: "translateY(25vh)"}}/>
+          <HomeFooter>
+            <div style={{ transform: "rotateZ(12deg)"}}>
+              <ContactUs />
+              <BottomBGImg src={streetViewCrop} alt={streetViewCrop} />
+            </div>
+          </HomeFooter>
         </HomePageSection>
-        {/* <HomePageSection> */}
-          <Services />
-        {/* </HomePageSection> */}
-      </HomeWelcomeSection>
-      {/* <HomePageSection> */}
-        <GalleryPeek />
-      {/* </HomePageSection> */}
-      <HomePageSection id="artistCards">
-        <ArtistCards />
-      </HomePageSection>
-      <HomePageSection id="merchandisePeek">
-        {/* <MerchandisePeek /> */}
-      </HomePageSection>
-      {/* <HomePageSection id="contactUs"> */}
-        <ContactUs />
-      {/* </HomePageSection> */}
-      <BottomBGImg src={streetViewCrop} alt={streetViewCrop} />
-    </>
-  );
+			</HomeFooterSection>
+		</>
+	);
 }

@@ -1,201 +1,245 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useCycle } from "framer";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-// import { PieceContext, PieceModalToggleContext } from '../../helperFunctions/avtcContext'
+import {
+	ArtistContext,
+	PieceModalToggleContext,
+} from "../../helperFunctions/avtcContext";
 import { DBURL } from "../../helperFunctions/config";
 
 //  //  //  STYLED-COMPONENTS   //  //  //
 
-const Section = styled.section`
-  overflow: hidden;
-  padding: 0;
-  margin: 3vmin;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const ArtistCardsSection = styled.section`
+	overflow-y: hidden;
+	overflow-x: scroll;
+	display: flex;
+    padding: 0 .5vmin;
+    grid-gap: .6vmin;
+	justify-content: center;
+	align-items: center;
+    /* backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg); */
 `;
 
-const ItemContainer = styled(motion.ul)`
-padding: 0;
-  list-style-type: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-inline-start: 0;
-  width: 300vmin;
-  /* height: 90.009vmin; */
-  /* max width 1000px will keep it same size as the gallery on full screen */
-  max-width: 1000px;
-  /* max-height: 1000px; */
-  display: grid;
-  grid-template-columns: repeat(3, 30%);
-  /* grid-template-rows: repeat(2, 1fr); */
-  /* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
-  justify-content: center;
-  align-content: center;
-  grid-gap: 1vmin;
-  /* padding: 2vmin 0 2vmin 0; */
-  /* background: rgba(255, 255, 255, 0.07); */
-  /* background: pink; */
-  /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
-  /* border-radius: 30px; */
-  -webkit-filter: drop-shadow(0px 2px 2px #000000);
-  filter: drop-shadow(0px 2px 2px #000000);
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-  /* background-color: rgba(0, 0, 0, 0.5); */
+const SectionTitle = styled.div`
+    width: 19.6vw;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: black;
+    /* font-family: 'New Rocker', serif; */
+    font-family: 'Quantico', sans-serif;
+    /* font-family: 'Hepta Slab', serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Six Caps', sans-serif; */
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
+    font-weight: 700;
+
+    @media (max-width: 600px) {
+        font-size: 16px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
+
+    transform: rotate(-90deg) translateY(4vmin);
+    
 `;
 
-const Item = styled(motion.li)`
-  /* width: 25.14433811802233vmin; */
-  /* max-width: 333px; */
-  /* width: 25.14433811802233vmin; */
-  /* max-height: 333px; */
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  width: 30vmin;
-  height: 45vmin;
-  max-width: 300px;
-  max-height: 500px;
-  overflow: hidden;
+const ArtistCardContainer = styled(motion.div)`
+	box-sizing: border-box;
+	width: 100vw;
+	height: 90vh;
+
+	display: flex;
+	flex-flow: column wrap;
+	grid-gap: 0.55vmin;
+	justify-content: stretch;
+	align-items: stretch;
 `;
 
-const Img = styled(motion.img)`
-  display: block;
+const ArtistCard = styled(motion.div)`
+	box-sizing: content-box;
+	/* width: 59.25vw; */
+	/* width: 39.2vw; */
+	min-height: 40vh;
+	overflow: hidden;
 
-  min-width: inherit;
-  min-height: inherit;
-  max-height: 30vmin;
-  margin: 0;
-  padding: 0;
-  /* transform: translate(0%, 0%); */
-  /* position: relative; */
-  left: 50%;
-  top: 0%;
+	display: flex;
+	grid-gap: 0.6vmin;
+    flex-flow: row nowrap;
+    /* align-items: center; */
+    /* justify-content: center; */
+	flex-grow: 1;
 
-  object-fit: cover;
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
+	background-color: rgba(0, 0, 0, 1);
+	/* transition: .05s ease-in; */
+    /* backdrop-filter: invert(0%) sepia(30%) hue-rotate(335deg); */
+    border: black 1px solid;
+
+	&:hover {
+		filter: sepia(25%) saturate(50%) contrast(70%) brightness(140%);
+	}
 `;
+
+const ArtistCardImageSection = styled(motion.div)`
+	box-sizing: border-box;
+	width: 19.64vw;
+	min-height: 40vh;
+	overflow: hidden;
+
+	/* display: flex;
+	justify-content: stretch;
+	align-items: stretch; */
+
+	background-position: 50% 50%;
+	background-size: cover;
+	filter: saturate(25%);
+
+
+    border-left: 1px black solid;
+
+`
+
+const ArtistCardNameSection = styled(motion.div)`
+	height: inherit;
+	width: 9.89vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* position: absolute; */
+    overflow: hidden;
+`;
+
+const ArtistCardName = styled.div`
+
+	/* color: black; */
+    /* font-family: 'New Rocker', serif; */
+    font-family: 'Quantico', sans-serif;
+    /* font-family: 'Hepta Slab', serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Six Caps', sans-serif; */
+    font-size: 1.5vmin;
+    letter-spacing: .5vmin;
+    font-weight: 700;
+    text-align: center;
+    transform: rotateZ(-90deg);
+    text-transform: uppercase;
+
+    @media (max-width: 600px) {
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
+
+`
+
+// const Img = styled(motion.img)`
+//     filter: sepia(30%) hue-rotate(335deg);
+//     display: block;
+
+//     width: inherit;
+//     height: inherit;
+//     max-height: 500px;
+
+//     margin: auto;
+// 	padding: 0;
+//     /* transform: translate(-50%, -50%); */
+//     /* position: relative; */
+// 	/* left: 50%; */
+// 	/* top: 50%; */
+
+//     /* justify-content: center; */
+
+//     object-fit: cover;
+//     -webkit-filter: grayscale(0%);
+//     filter: grayscale(0%);
+// `
 
 const ItemTitle = styled.h1`
-  font-size: 3vmin;
-  width: 100%;
-`;
-
-const Li = styled(motion.li)`
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  display: grid;
-  align-items: center;
-  justify-content: center;
-`;
-
-const P = styled.p`
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const ArtistTitle = styled.h1`
-  font-size: 5vmin;
+	font-size: 15px;
+	width: 100%;
 `;
 
 //  //  //  VARIABLES   //  //  //
 
 const ItemContainerAnimation = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 1.3,
-      staggerChildren: 0.5,
-    },
-  },
+	hidden: { opacity: 1, scale: 0 },
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 1.3,
+			staggerChildren: 0.5,
+		},
+	},
 };
 
 const ItemAnimation = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
+	hidden: { y: 20, opacity: 0 },
+	visible: {
+		y: 0,
+		opacity: 1,
+	},
 };
 
 //  //  //  FUNCTION    //  //  //
 
-export default function ArtistsPeek() {
-  //  //  //  DATA FETCHING FROM DB   //  //  //
+export default function ArtistCards() {
 
-  useEffect(() => {
-    fetchArtists();
-  }, []);
+	//  //  //  DATA FETCHING FROM DB   //  //  //
 
-  const [artists, setArtists] = useState([]);
+	useEffect(() => {
+		fetchArtists();
+	}, []);
 
-  const fetchArtists = async () => {
-    const rtstsData = await fetch(`${DBURL}/artists`);
-    const rtsts = await rtstsData.json();
+	const [artists, setArtists] = useState([]);
 
-    setArtists(rtsts);
-  };
+	const fetchArtists = async () => {
+		const rtstsData = await fetch(`${DBURL}/artists`);
+		const rtsts = await rtstsData.json();
 
-  // //  //  //  PIECE SETTINGS    //  //  //
+		setArtists(rtsts);
+	};
 
-  // const { setPiece } = useContext(PieceContext)
-  // const { showPiece, setShowPiece } = useContext(PieceModalToggleContext)
+	//  //  //  FUNCTIONS    //  //  //
 
-  // const fetchPiece = async (i) => {
+	return (
+		<>
+			<ArtistCardsSection>
+				<ArtistCardContainer
+					variants={ItemContainerAnimation}
+					initial="hidden"
+					animate="visible"
+                    >
+                    <SectionTitle>ARTISTS</SectionTitle>
+					{artists.map((i) => (
+                        <ArtistCard
+                        key={i.slug}
+                        variants={ItemAnimation}
+                        >
+                            <Link 
+                            className="links" 
+                            to={`/artists/${i.slug}`} 
+                            style={{ display: 'flex', justifyContent: 'stretch', alignItems: 'stretch'}}
+                            >
+						    	<ArtistCardNameSection>
+                                    <ArtistCardName>{i.name}</ArtistCardName>
+						    	</ArtistCardNameSection>
 
-  //     const picData = await fetch(`${DBURL}/gallery/${i}`)
-  //     const pic = await picData.json();
-
-  //     setPiece(
-  //         {
-  //             title: pic.title,
-  //             slug: pic.slug,
-  //             img: pic.art_image,
-  //             artistSlug: pic.artist_id,
-  //             artistName: pic.artist_name
-  //         }
-  //     )
-
-  //     setShowPiece(!showPiece)
-  // }
-
-  //  //  //  FUNCTIONS    //  //  //
-
-  const [ scrollPositionY, setScrollPositionY ] = useState(window.scrollY)
-
-  return (
-    <>
-      <ArtistTitle>Resident Artists</ArtistTitle>
-      <Section>
-        <ItemContainer
-          variants={ItemContainerAnimation}
-          initial="hidden"
-          animate="visible"
-        >
-          {artists.map((i) => (
-            <Item key={i.slug} variants={ItemAnimation}>
-              <ItemTitle>{i.name}</ItemTitle>
-              <Link className="links" to={`/artists/${i.slug}`}>
-                <Img
-                  src={i.profile_image}
-                  alt={i.name}
-                  id={i.slug}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ duration: 0.2 }}
-                />
-              </Link>
-            </Item>
-          ))}
-        </ItemContainer>
-      </Section>
-    </>
-  );
+						    	<ArtistCardImageSection 
+                                style={{ backgroundImage: `url(${i.profile_image})` }}
+                                />
+						    </Link>
+                        </ArtistCard>
+					))}
+				</ArtistCardContainer>
+			</ArtistCardsSection>
+		</>
+	);
 }
