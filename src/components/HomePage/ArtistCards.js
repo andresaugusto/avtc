@@ -82,7 +82,7 @@ const ArtistCard = styled(motion.div)`
     border: black 1px solid;
 
 	&:hover {
-		filter: sepia(25%) saturate(50%) contrast(70%) brightness(140%);
+		filter: invert(100%);
 	}
 `;
 

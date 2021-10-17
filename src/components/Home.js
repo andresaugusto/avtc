@@ -78,7 +78,7 @@ const HomeWorkSection = styled(motion.section)`
 `;
 
 const HomeFooterSection = styled(motion.section)`
-	width: 100vw;
+	width: 100%;
 	overflow: hidden;
 	background: rgba(0, 0, 0, 0.5);
 	padding-bottom: 15.5vh;
@@ -95,7 +95,7 @@ const HomeFooter = styled(motion.section)`
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
-	transform: translateY(25vh) rotateZ(-12deg);
+	transform: translateY(25vh) rotateZ(12deg);
 	transform-origin: center;
 `;
 
@@ -105,8 +105,8 @@ const BottomBGImg = styled(motion.img)`
 
 	margin: 0;
 	padding: 0;
-	-webkit-transform: translate(-50%, 0%);
-	position: absolute;
+	/* -webkit-transform: translate(-50%, 0%); */
+	position: relative;
 	/* top: -100%; */
 	left: 50%;
 
@@ -156,15 +156,15 @@ export default function Home() {
 				<ArtistCards />
 			</HomeWorkSection>
 			<HomeFooterSection>
-				<HomePageSection>
-          <MerchandisePeek style={{ transform: "translateY(25vh)"}}/>
-          <HomeFooter>
-            <div style={{ transform: "rotateZ(12deg)"}}>
+        <MerchandisePeek/>
+				<HomePageSection style={{ transform: "translateY(0vh)"}}>
+          {/* <HomeFooter> */}
+            {/* <div style={{ transform: "rotateZ(0deg)"}}> */}
               <ContactUs />
-              <BottomBGImg src={streetViewCrop} alt={streetViewCrop} />
-            </div>
-          </HomeFooter>
+            {/* </div> */}
+          {/* </HomeFooter> */}
         </HomePageSection>
+        <BottomBGImg src={streetViewCrop} alt={streetViewCrop} />
 			</HomeFooterSection>
 		</>
 	);
