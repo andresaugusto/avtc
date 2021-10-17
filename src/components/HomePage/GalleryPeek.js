@@ -9,131 +9,145 @@ import { DBURL } from '../../helperFunctions/config'
 
 //  //  //  STYLED-COMPONENTS   //  //  //
 
-const Section = styled.section`
+const GalleryPeekSection = styled.section`
     overflow: hidden;
-    padding: 0;
-    margin: 3vmin;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: invert(100%) sepia(50%) hue-rotate(335deg);
 `
 
-const ItemContainer = styled(motion.ul)`
+const PieceCardContainer = styled(motion.div)`
     
-    list-style: none;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-inline-start: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    padding: 4vmin .5vmin;
 
-    /* width: 100vmin;
-    height: 100vmin;
-    max-width: 1000px;
-    max-height: 1000px; */
-    display: grid;
-    grid-template-columns: repeat(3, 33%);
-    /* grid-template-rows: repeat(2, 1fr); */
-	/* grid-template-columns: repeat(auto-fill, minmax(26vmin, 1fr)); */
-    justify-items: stretch;
+    display: flex;
+    flex-flow: row wrap;
     grid-gap: .5vmin;
-    /* padding: 1vmin; */
-    /* background: rgba(255, 255, 255, 0.07); */
-    /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.421), rgba(50, 50, 50, 0.421), rgba(255, 255, 255, 0.171), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.171), rgba(50, 50, 50, 0.421), rgba(0, 0, 0, 0.421), rgba(0, 0, 0, 0)); */
-    /* border-radius: 30px; */
+    justify-content: stretch;
+    align-items: stretch;
+
     -webkit-filter: drop-shadow(0px 2px 2px #000000);
     filter: drop-shadow(0px 2px 2px #000000);
 `
 
-const Item = styled(motion.li)`
-    filter: saturate(22%);
-    /* width: 25.14433811802233vmin; */
-    /* max-width: 315.31px; */
-    /* width: 25.14433811802233vmin; */
-    /* max-height: 315.31px; */
+const PieceCard = styled(motion.div)`
 
-    width: 33vmin;
-    height: 33vmin;
-    max-width: 330px;
-    max-height: 330px;
-
-    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    min-width: 18vw;
+    min-height: 40vh;
     overflow: hidden;
 
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    flex-grow: 1;
+
+    background-color: rgba(0, 0, 0, 0.5);
+	background-position: 50% 50%;
+	background-size: cover;
+    filter: saturate(25%);
+    /* transition: .05s ease-in; */
+
+    &:hover {
+        filter: sepia(25%) saturate(50%) contrast(70%) brightness(140%);
+    }
+
 `
 
-const Img = styled(motion.img)`
-    filter: sepia(30%) hue-rotate(335deg);
-    display: block;
+const PieceCardPlaceholder = styled(motion.div)`
 
-    width: inherit;
-    height: inherit;
-    max-height: 500px;
+    box-sizing: border-box;
+    min-width: 18vw;
+    min-height: 40vh;
+    overflow: hidden;
 
-    margin: auto;
-	padding: 0;
-    /* transform: translate(-50%, -50%); */
-    /* position: relative; */
-	/* left: 50%; */
-	/* top: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
 
-    /* justify-content: center; */
+    background-color: black;
 
-    object-fit: cover;
-    -webkit-filter: grayscale(0%);
-    filter: grayscale(0%);
+    &:hover {
+        background-color: white;
+        color: black;
+    }
 `
+
+const GalleryLink = styled(motion.div)`
+
+    width: 40vw;
+    /* height: 30vmin; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    
+    /* color: black; */
+    /* font-family: 'New Rocker', serif; */
+    font-family: 'Quantico', sans-serif;
+    /* font-family: 'Hepta Slab', serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Six Caps', sans-serif; */
+    font-size: 1.5vmin;
+    letter-spacing: .5vmin;
+    font-weight: 700;
+    text-align: center;
+    transform: rotateZ(90deg);
+
+    @media (max-width: 600px) {
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
+`
+
+// const Img = styled(motion.img)`
+//     filter: sepia(30%) hue-rotate(335deg);
+//     display: block;
+
+//     width: inherit;
+//     height: inherit;
+//     max-height: 500px;
+
+//     margin: auto;
+// 	padding: 0;
+//     /* transform: translate(-50%, -50%); */
+//     /* position: relative; */
+// 	/* left: 50%; */
+// 	/* top: 50%; */
+
+//     /* justify-content: center; */
+
+//     object-fit: cover;
+//     -webkit-filter: grayscale(0%);
+//     filter: grayscale(0%);
+// `
 
 const ItemTitle = styled.h1`
     font-size: 15px;
     width: 100%;
 `
 
-const Li = styled(motion.li)`
+const PieceCardSection = styled(motion.div)`
 
-    width: 33vmin;
-    height: 33vmin;
-    max-width: 330px;
-    max-height: 330px;
+    /* width: 33vmin; */
+    /* height: 33vmin; */
 
     overflow: hidden;
-    display: grid;
+    box-sizing: content-box;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 
     /* background-color: rgba(0, 0, 0, 0.3); */
     /* border: 1px solid rgba(255, 255, 255, 0.3); */
-    box-sizing: content-box;
-`
-const LiWithBorder = styled(motion.li)`
-
-    width: 33vmin;
-    height: 33vmin;
-    max-width: 330px;
-    max-height: 330px;
-
-    overflow: hidden;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-sizing: content-box;
-`
-
-const FullGalDiv = styled(motion.div)`
-
-    width: 30vmin;
-    height: 30vmin;
-    max-width: 300px;
-    max-height: 300px;
-
-    display: grid;
-    align-items: center;
-    justify-content: center;
-
-    color: rgba(255, 255, 255, 0.7);
 `
 
 
@@ -208,20 +222,21 @@ export default function GalleryPeek() {
 
     return (
         <>
-            <Section>
-                <ItemContainer
+            <GalleryPeekSection>
+                <PieceCardContainer
                     variants={ItemContainerAnimation}
                     initial="hidden"
                     animate="visible"
                     >
-                        {gallery.slice(0,4).map((i) => (
-                            <Item
+                        {gallery.slice(0,9).map((i) => (
+                            <PieceCard
                                 key={i.slug}
                                 variants={ItemAnimation}
                                 onClick={() => fetchPiece(i.slug)}
+                                style={{ backgroundImage: `url(${i.art_image})`}}
                                 >
-                                    <Li>
-                                        <Img
+                                    <PieceCardSection>
+                                        {/* <Img
                                             src={i.art_image}
                                             alt={i.title}
                                             id={i.slug}
@@ -229,44 +244,25 @@ export default function GalleryPeek() {
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.9 }}
                                             transition={{ duration: 0.2 }}
-                                            />
-                                    </Li>                          
-                            </Item>
+                                            /> */}
+                                    </PieceCardSection>                          
+                            </PieceCard>
                         ))}
-                        <LiWithBorder 
+                        <PieceCardPlaceholder 
                             variants={ItemAnimation}
                             >
                             <Link to='/gallery'>
-                                <FullGalDiv
+                                <GalleryLink
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     transition={{ duration: 0.2 }}
                                     >
                                         VIEW FULL GALLERY
-                                </FullGalDiv>
+                                </GalleryLink>
                             </Link>
-                        </LiWithBorder>
-                        {gallery.slice(5,9).map((i) => (
-                            <Item
-                                key={i.slug}
-                                variants={ItemAnimation}
-                                onClick={() => fetchPiece(i.slug)}
-                                >
-                                    <Li>
-                                        <Img
-                                            src={i.art_image}
-                                            alt={i.title}
-                                            id={i.slug}
-                                        
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            transition={{ duration: 0.2 }}
-                                            />
-                                    </Li>                          
-                            </Item>
-                        ))}
-                </ItemContainer>
-            </Section>
+                        </PieceCardPlaceholder>
+                </PieceCardContainer>
+            </GalleryPeekSection>
         </>
     )
 }

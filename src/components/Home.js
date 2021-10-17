@@ -40,7 +40,6 @@ const HomeWelcomeSection = styled(motion.section)`
 
 
 const HomeHeader = styled(motion.section)`
-  /* background-image: url(${streetViewCrop}); */
   backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg);
   box-sizing: border-box;
   /* position: relative; */
