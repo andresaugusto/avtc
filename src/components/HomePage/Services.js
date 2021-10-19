@@ -208,7 +208,7 @@ export default function Services() {
 
     return (
         <>
-            <Section id='services'>
+            <Section>
                 <SectionTitle>S E R V I C E S</SectionTitle>
                 <ItemContainer
                     variants={ItemContainerAnimation}

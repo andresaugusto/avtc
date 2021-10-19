@@ -6,10 +6,10 @@ import styled from 'styled-components'
 import { PieceContext, PieceModalToggleContext } from '../../helperFunctions/avtcContext'
 import { DBURL } from '../../helperFunctions/config'
 
+import LoadingGif from '../../media/LoadingGif.gif'
 
 //  //  //  STYLED-COMPONENTS   //  //  //
-
-const GalleryPeekSection = styled.section`
+const GalleryPeekContainer = styled.div`
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@ const GalleryPeekSection = styled.section`
 `
 const SectionTitle = styled.div`
     width: 100vw;
-    margin-bottom: 4vmin;
+    margin: 4vmin 0;
 
     color: black;
     /* font-family: 'New Rocker', serif; */
@@ -35,8 +35,7 @@ const SectionTitle = styled.div`
         font-weight: 400;
     }
 `
-
-const PieceCardContainer = styled(motion.div)`
+const PieceCardsContainer = styled(motion.div)`
     
     box-sizing: border-box;
     width: 100vw;
@@ -52,36 +51,43 @@ const PieceCardContainer = styled(motion.div)`
     /* -webkit-filter: drop-shadow(0px 2px 2px #000000);
     filter: drop-shadow(0px 2px 2px #000000); */
 `
-
 const PieceCard = styled(motion.div)`
 
     box-sizing: border-box;
     min-width: 18vw;
     min-height: 40vh;
     overflow: hidden;
+    position: relative;
 
-    /* display: flex;
+    display: flex;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
     flex-grow: 1;
 
     background-color: black;
 	background-position: 50% 50%;
 	background-size: cover;
     filter: saturate(25%);
-    /* transition: .05s ease-in; */
+    transition: .05s ease-in;
     border: black 1px solid;
+`
+const PieceCardBackground = styled.div`
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    background-position: 50% 50%;
+    background-size: cover;
 
     &:hover {
-        background-color: white;
-        color: black;
-        filter: sepia(25%) saturate(50%) contrast(70%) brightness(140%);
+        background-color: black;
+        filter: saturate(00%) contrast(140%) brightness(30%);
     }
 `
-
-const GalleryLink = styled(motion.div)`
-	height: inherit;
-	min-width: 18vw;
+const PieceCardTitle = styled.div`
+    /* z-index: +1; */
+	/* min-width: 18vw; */
     width: 40vw;
 
 	display: flex;
@@ -89,7 +95,7 @@ const GalleryLink = styled(motion.div)`
 	align-items: center;
 	position: absolute;
 
-	/* color: white; */
+	color: white;
     /* font-family: 'New Rocker', serif; */
     font-family: 'Quantico', sans-serif;
     /* font-family: 'Hepta Slab', serif; */
@@ -102,105 +108,53 @@ const GalleryLink = styled(motion.div)`
     transform: rotateZ(90deg);
     text-transform: uppercase;
 
+    pointer-events: none;
+
     @media (max-width: 600px) {
         font-size: 11px;
         letter-spacing: 2px;
         font-weight: 400;
     }
-`;
-
-// const Img = styled(motion.img)`
-//     filter: sepia(30%) hue-rotate(335deg);
-//     display: block;
-
-//     width: inherit;
-//     height: inherit;
-//     max-height: 500px;
-
-//     margin: auto;
-// 	padding: 0;
-//     /* transform: translate(-50%, -50%); */
-//     /* position: relative; */
-// 	/* left: 50%; */
-// 	/* top: 50%; */
-
-//     /* justify-content: center; */
-
-//     object-fit: cover;
-//     -webkit-filter: grayscale(0%);
-//     filter: grayscale(0%);
-// `
-
-const ItemTitle = styled.h1`
-    font-size: 15px;
-    width: 40vw;
 `
-
-const PieceCardSection = styled(motion.div)`
-
-    /* width: 33vmin; */
-    /* height: 33vmin; */
-
-    overflow: hidden;
-    box-sizing: content-box;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    /* border: 1px solid rgba(255, 255, 255, 0.3); */
-`
-
 
 //  //  //  VARIABLES   //  //  //
-
 const ItemContainerAnimation = {
-    hidden: { opacity: 1, scale: 0 },
+    hidden: { opacity: 1 },
     visible: {
         opacity: 1,
-        scale: 1,
         transition: {
         delayChildren: 1.3,
         staggerChildren: 0.5
         }
     }
 };
-  
 const ItemAnimation = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { x: -20, opacity: 0 },
     visible: {
-        y: 0,
+        x: 0,
         opacity: 1
     }
 };
 
 
 //  //  //  FUNCTION    //  //  //
-
 export default function GalleryPeek() {
 
-
     //  //  //  DATA FETCHING FROM DB   //  //  //
-  
     useEffect(() => {fetchGallery()}, []);
-
-    const [ gallery, setGallery ] = useState([]);
-  
+    const [ gallery, setGallery ] = useState(["loading content"]);
     const fetchGallery = async () => {
       
       const gallData = await fetch(`${DBURL}/gallery`)
       const gall = await gallData.json();
 
       setGallery(gall);
-      
+    
     }
 
-
     //  //  //  PIECE SETTINGS    //  //  //
-
     const { setPiece } = useContext(PieceContext)
     const { showPiece, setShowPiece } = useContext(PieceModalToggleContext)
-
     const fetchPiece = async (i) => {
       
         const picData = await fetch(`${DBURL}/gallery/${i}`)
@@ -220,42 +174,78 @@ export default function GalleryPeek() {
     }
 
     //  //  //  FUNCTIONS    //  //  //
-
     return (
         <>
-                <SectionTitle>PIECES</SectionTitle>
-            <GalleryPeekSection>
-                <PieceCardContainer
+            <SectionTitle>PIECES</SectionTitle>
+            <GalleryPeekContainer>
+                <PieceCardsContainer
                     variants={ItemContainerAnimation}
                     initial="hidden"
                     animate="visible"
-                    >
-                        {gallery.slice(0,9).map((i) => (
-                            <PieceCard
-                                key={i.slug}
-                                variants={ItemAnimation}
-                                onClick={() => fetchPiece(i.slug)}
-                                style={{ backgroundImage: `url(${i.art_image})`}}
-                                >                    
-                            </PieceCard>
-                        ))}
-                        {/* <PieceCardPlaceholder 
-                            variants={ItemAnimation}
-                            > */}
+                >
+                    {gallery[0] === "loading content" ? (
+                        <>
+                            {Array.from(Array(9).keys()).map((i) => (
+                                <PieceCard
+                                    key={`PieceCardLoadingItem${i + 1}`}
+                                    variants={ItemAnimation}
+                                >
+                                    <PieceCardBackground
+                                        style={{
+                                            backgroundImage: `url(${LoadingGif})`
+                                        }}
+                                    >
+                                    </PieceCardBackground>
+                                    <PieceCardTitle>
+                                        LOADING
+                                    </PieceCardTitle>
+                                </PieceCard>
+                            ))}
                             <PieceCard
                                 key="link-to-gallery"
-                                >
+                                variants={ItemAnimation}
+                            >
                                 <Link to='/gallery'
-                                style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                                 >
-                                    <GalleryLink>
-                                            VIEW FULL GALLERY
-                                    </GalleryLink>
+                                    <PieceCardTitle>
+                                        VIEW FULL GALLERY
+                                    </PieceCardTitle>
                                 </Link>
                             </PieceCard>
-                        {/* </PieceCardPlaceholder> */}
-                </PieceCardContainer>
-            </GalleryPeekSection>
+                        </>
+                    ) : (
+                        <>
+                            {gallery.slice(0,9).map((i) => (
+                                <PieceCard
+                                    onClick={() => fetchPiece(i.slug)}
+                                    key={i.slug}
+                                    variants={ItemAnimation}
+                                >
+                                    <PieceCardBackground
+                                        style={{
+                                            backgroundImage: `url(${i.art_image})`
+                                        }}
+                                    >
+                                    </PieceCardBackground>
+                                </PieceCard>
+                            ))}
+                            <PieceCard
+                                key="link-to-gallery"
+                                variants={ItemAnimation}
+                            >
+                                <Link to='/gallery'
+                                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                                >
+                                    <PieceCardTitle>
+                                        VIEW FULL GALLERY
+                                    </PieceCardTitle>
+                                </Link>
+                            </PieceCard>
+                        </>
+                    )}
+                </PieceCardsContainer>
+            </GalleryPeekContainer>
         </>
     )
 }

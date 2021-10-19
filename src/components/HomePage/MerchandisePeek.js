@@ -1,6 +1,51 @@
 import { useState } from 'react'
 import { findByLabelText } from "@testing-library/dom"
+
+import styled from 'styled-components'
 import Merch from "../../media/SHOP_IMG_1.png"
+
+const SectionContainer = styled.div`
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+`
+const SectionBackground = styled.div`
+    box-sizing: border-box;
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    background-position: 50% 50%;
+    background-size: cover;
+    filter: saturate(0%) blur(.3vmin) invert(00%);
+    background-color: black;
+
+`
+const SectionTitle = styled.div`
+    z-index: +1;
+
+    color: white;
+    font-family: 'New Rocker', serif;
+    /* font-family: 'Quantico', sans-serif; */
+    /* font-family: 'Hepta Slab', serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Six Caps', sans-serif; */
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
+    font-weight: 700;
+
+    @media (max-width: 600px) {
+        font-size: 16px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
+`
 
 export default function MerchandisePeek() {
 
@@ -27,41 +72,19 @@ export default function MerchandisePeek() {
 
 
     return (
-        <div style={{
-                    zAxis: '-10',
-                    boxSizing: 'border-box',
-                    height: '100vh',
-                    width: '100vw',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    display: 'flex',
-                    flexFlow: 'column nowrap',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-        }}>
-            <div id='merchandisePeek' className='home-page-divs'
+        <SectionContainer>
+            <SectionBackground
                 style={{
-                    zAxis: '-10',
-                    boxSizing: 'border-box',
-                    height: '100%',
-                    width: '100%',
-                    overflow: 'hidden',
-                    position: 'absolute',
-                    backgroundColor: 'black',
-                    backgroundImage: `url(${Merch})`,
-                    // backgroundPosition: `50% ${bGYPosition}%`,
-                    backgroundPosition: '50% 50%',
-                    backgroundSize: 'cover',
-                    filter: 'saturate(0%) blur(.5vmin) invert(0%)',
-                    color: 'white',
-                }}
-                >
-            </div>
-            <div style={{
+                    backgroundImage: `url(${Merch})`
+                }}>
+            </SectionBackground>
+            <div 
+                style={{
                 position: 'relative',
-                zAxis: '+10',
             }}>
-                <h1 id='merchandisePeekTitle'>SHOP MERCH COMING SOON</h1>
+                <SectionTitle id='merchandisePeekTitle'>
+                    SHOP MERCH COMING SOON
+                </SectionTitle>
                 {/* <div id='merchandisePeekGrid'>
                     <div id='linkToMerchandisePage'>
                         <h5 className='visit-our-store-button'>VISIT<br/>OUR<br/>STORE</h5>
@@ -69,6 +92,6 @@ export default function MerchandisePeek() {
                     <img alt='imgName' id='merchandisePeekImg' className='merchandise-peek-img'/>
                 </div> */}
             </div>
-        </div>
+        </SectionContainer>
     )
 }

@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-import {
-	ArtistContext,
-	PieceModalToggleContext,
-} from "../../helperFunctions/avtcContext";
 import { DBURL } from "../../helperFunctions/config";
 
-//  //  //  STYLED-COMPONENTS   //  //  //
 
-const ArtistCardsSection = styled.section`
+import LoadingGif from '../../media/LoadingGif.gif'
+
+//  //  //  STYLED-COMPONENTS   //  //  //
+const ArtistCardsContainer = styled.section`
 	overflow-y: hidden;
 	overflow-x: scroll;
 	display: flex;
@@ -20,8 +18,7 @@ const ArtistCardsSection = styled.section`
 	justify-content: center;
 	align-items: center;
     /* backdrop-filter: invert(100%) sepia(30%) hue-rotate(335deg); */
-`;
-
+`
 const SectionTitle = styled.div`
     width: 19.6vw;
     height: 100%;
@@ -40,16 +37,14 @@ const SectionTitle = styled.div`
     letter-spacing: 1vmin;
     font-weight: 700;
 
+	transform: rotate(-90deg) translateY(4vmin);
+
     @media (max-width: 600px) {
         font-size: 16px;
         letter-spacing: 2px;
         font-weight: 400;
     }
-
-    transform: rotate(-90deg) translateY(4vmin);
-    
-`;
-
+`
 const ArtistCardContainer = styled(motion.div)`
 	box-sizing: border-box;
 	width: 100vw;
@@ -60,8 +55,7 @@ const ArtistCardContainer = styled(motion.div)`
 	grid-gap: 0.55vmin;
 	justify-content: stretch;
 	align-items: stretch;
-`;
-
+`
 const ArtistCard = styled(motion.div)`
 	box-sizing: content-box;
 	/* width: 59.25vw; */
@@ -84,28 +78,8 @@ const ArtistCard = styled(motion.div)`
 	&:hover {
 		filter: invert(100%);
 	}
-`;
-
-const ArtistCardImageSection = styled(motion.div)`
-	box-sizing: border-box;
-	width: 19.64vw;
-	min-height: 40vh;
-	overflow: hidden;
-
-	/* display: flex;
-	justify-content: stretch;
-	align-items: stretch; */
-
-	background-position: 50% 50%;
-	background-size: cover;
-	filter: saturate(25%);
-
-
-    border-left: 1px black solid;
-
 `
-
-const ArtistCardNameSection = styled(motion.div)`
+const ArtistCardTitleContainer = styled.div`
 	height: inherit;
 	width: 9.89vw;
 
@@ -114,9 +88,8 @@ const ArtistCardNameSection = styled(motion.div)`
 	align-items: center;
 	/* position: absolute; */
     overflow: hidden;
-`;
-
-const ArtistCardName = styled.div`
+`
+const ArtistCardTitle = styled.div`
 
 	/* color: black; */
     /* font-family: 'New Rocker', serif; */
@@ -136,64 +109,47 @@ const ArtistCardName = styled.div`
         letter-spacing: 2px;
         font-weight: 400;
     }
+`
+const ArtistCardImage = styled.div`
+	box-sizing: border-box;
+	width: 19.64vw;
+	min-height: 40vh;
+	overflow: hidden;
 
+	/* display: flex;
+	justify-content: stretch;
+	align-items: stretch; */
+
+	background-position: 50% 50%;
+	background-size: cover;
+	filter: saturate(25%);
+
+    border-left: 1px black solid;
 `
 
-// const Img = styled(motion.img)`
-//     filter: sepia(30%) hue-rotate(335deg);
-//     display: block;
-
-//     width: inherit;
-//     height: inherit;
-//     max-height: 500px;
-
-//     margin: auto;
-// 	padding: 0;
-//     /* transform: translate(-50%, -50%); */
-//     /* position: relative; */
-// 	/* left: 50%; */
-// 	/* top: 50%; */
-
-//     /* justify-content: center; */
-
-//     object-fit: cover;
-//     -webkit-filter: grayscale(0%);
-//     filter: grayscale(0%);
-// `
-
-const ItemTitle = styled.h1`
-	font-size: 15px;
-	width: 100%;
-`;
-
 //  //  //  VARIABLES   //  //  //
-
 const ItemContainerAnimation = {
-	hidden: { opacity: 1, scale: 0 },
+	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
-		scale: 1,
 		transition: {
 			delayChildren: 1.3,
 			staggerChildren: 0.5,
 		},
 	},
 };
-
 const ItemAnimation = {
-	hidden: { y: 20, opacity: 0 },
+	hidden: { x: 20, opacity: 0 },
 	visible: {
-		y: 0,
+		x: 0,
 		opacity: 1,
 	},
 };
 
 //  //  //  FUNCTION    //  //  //
-
 export default function ArtistCards() {
 
 	//  //  //  DATA FETCHING FROM DB   //  //  //
-
 	useEffect(() => {
 		fetchArtists();
 	}, []);
@@ -208,10 +164,9 @@ export default function ArtistCards() {
 	};
 
 	//  //  //  FUNCTIONS    //  //  //
-
 	return (
 		<>
-			<ArtistCardsSection>
+			<ArtistCardsContainer>
 				<ArtistCardContainer
 					variants={ItemContainerAnimation}
 					initial="hidden"
@@ -228,18 +183,18 @@ export default function ArtistCards() {
                             to={`/artists/${i.slug}`} 
                             style={{ display: 'flex', justifyContent: 'stretch', alignItems: 'stretch'}}
                             >
-						    	<ArtistCardNameSection>
-                                    <ArtistCardName>{i.name}</ArtistCardName>
-						    	</ArtistCardNameSection>
-
-						    	<ArtistCardImageSection 
+						    	<ArtistCardTitleContainer>
+                                    <ArtistCardTitle>{i.name}</ArtistCardTitle>
+						    	</ArtistCardTitleContainer>
+						    	<ArtistCardImage 
                                 style={{ backgroundImage: `url(${i.profile_image})` }}
                                 />
+
 						    </Link>
                         </ArtistCard>
 					))}
 				</ArtistCardContainer>
-			</ArtistCardsSection>
+			</ArtistCardsContainer>
 		</>
 	);
 }
