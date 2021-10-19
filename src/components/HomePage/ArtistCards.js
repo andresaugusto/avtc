@@ -6,10 +6,10 @@ import styled from "styled-components";
 import { DBURL } from "../../helperFunctions/config";
 
 
-import LoadingGif from '../../media/LoadingGif.gif'
+// import LoadingGif from '../../media/LoadingGif.gif'
 
 //  //  //  STYLED-COMPONENTS   //  //  //
-const ArtistCardsContainer = styled.section`
+const ArtistCardsSection = styled.section`
 	overflow-y: hidden;
 	overflow-x: scroll;
 	display: flex;
@@ -45,7 +45,7 @@ const SectionTitle = styled.div`
         font-weight: 400;
     }
 `
-const ArtistCardContainer = styled(motion.div)`
+const ArtistCardsContainer = styled(motion.div)`
 	box-sizing: border-box;
 	width: 100vw;
 	height: 90vh;
@@ -166,35 +166,34 @@ export default function ArtistCards() {
 	//  //  //  FUNCTIONS    //  //  //
 	return (
 		<>
-			<ArtistCardsContainer>
-				<ArtistCardContainer
+			<ArtistCardsSection>
+				<ArtistCardsContainer
 					variants={ItemContainerAnimation}
 					initial="hidden"
 					animate="visible"
-                    >
+                >
                     <SectionTitle>ARTISTS</SectionTitle>
 					{artists.map((i) => (
                         <ArtistCard
-                        key={i.slug}
-                        variants={ItemAnimation}
+							key={i.slug}
+							variants={ItemAnimation}
                         >
                             <Link 
-                            className="links" 
-                            to={`/artists/${i.slug}`} 
-                            style={{ display: 'flex', justifyContent: 'stretch', alignItems: 'stretch'}}
+								className="links" 
+								to={`/artists/${i.slug}`} 
+								style={{ display: 'flex', justifyContent: 'stretch', alignItems: 'stretch'}}
                             >
 						    	<ArtistCardTitleContainer>
                                     <ArtistCardTitle>{i.name}</ArtistCardTitle>
 						    	</ArtistCardTitleContainer>
 						    	<ArtistCardImage 
-                                style={{ backgroundImage: `url(${i.profile_image})` }}
+                                	style={{ backgroundImage: `url(${i.profile_image})` }}
                                 />
-
 						    </Link>
                         </ArtistCard>
 					))}
-				</ArtistCardContainer>
-			</ArtistCardsContainer>
+				</ArtistCardsContainer>
+			</ArtistCardsSection>
 		</>
 	);
 }

@@ -52,7 +52,6 @@ const PieceCardsContainer = styled(motion.div)`
     filter: drop-shadow(0px 2px 2px #000000); */
 `
 const PieceCard = styled(motion.div)`
-
     box-sizing: border-box;
     min-width: 18vw;
     min-height: 40vh;
@@ -68,10 +67,10 @@ const PieceCard = styled(motion.div)`
 	background-position: 50% 50%;
 	background-size: cover;
     filter: saturate(25%);
-    transition: .05s ease-in;
+    transition: 1s ease-in;
     border: black 1px solid;
 `
-const PieceCardBackground = styled.div`
+const PieceCardBG = styled.div`
     box-sizing: border-box;
     height: 100%;
     width: 100%;
@@ -79,6 +78,7 @@ const PieceCardBackground = styled.div`
     position: absolute;
     background-position: 50% 50%;
     background-size: cover;
+    /* background-image: ${LoadingGif}; */
 
     &:hover {
         background-color: black;
@@ -141,14 +141,19 @@ const ItemAnimation = {
 export default function GalleryPeek() {
 
     //  //  //  DATA FETCHING FROM DB   //  //  //
+    
     useEffect(() => {fetchGallery()}, []);
-    const [ gallery, setGallery ] = useState(["loading content"]);
+    const [ gallery, setGallery ] = useState([LoadingGif]);
+    const [ pieceCardBGImages, setPieceCardBGImages ] = useState((Array.from(Array(9).keys()).map((i)=>i = LoadingGif)));
+    // console.log(pieceCardBGImages)
     const fetchGallery = async () => {
       
       const gallData = await fetch(`${DBURL}/gallery`)
       const gall = await gallData.json();
 
       setGallery(gall);
+      setPieceCardBGImages((Array.from(gall.slice(0,9).map((i)=> i.value = i.art_image))))
+    //   console.log(pieceCardBGImages)
     
     }
 
@@ -179,31 +184,36 @@ export default function GalleryPeek() {
             <SectionTitle>PIECES</SectionTitle>
             <GalleryPeekContainer>
                 <PieceCardsContainer
-                    variants={ItemContainerAnimation}
+                    // variants={ItemContainerAnimation}
                     initial="hidden"
                     animate="visible"
                 >
-                    {gallery[0] === "loading content" ? (
-                        <>
-                            {Array.from(Array(9).keys()).map((i) => (
+                    {/* {gallery[0] === LoadingGif ? ( */}
+                        {/* <> */}
+                            {pieceCardBGImages.map((i) => (
                                 <PieceCard
-                                    key={`PieceCardLoadingItem${i + 1}`}
-                                    variants={ItemAnimation}
+                                    // key={`PieceCard${i}`}
+                                    // onClick={gallery[0]===LoadingGif ? (null) : (() => fetchPiece(i.slug))}
+                                    // variants={ItemAnimation}
                                 >
-                                    <PieceCardBackground
+                                    <PieceCardBG
                                         style={{
-                                            backgroundImage: `url(${LoadingGif})`
+                                            // backgroundImage: (gallery[0]===LoadingGif ? (`url(${LoadingGif})`) : (`url(${i.art_image})`),
+                                            backgroundImage: `url(${i})`
                                         }}
-                                    >
-                                    </PieceCardBackground>
-                                    <PieceCardTitle>
-                                        LOADING
-                                    </PieceCardTitle>
-                                </PieceCard>
+                                    />
+                                    {gallery[0]===LoadingGif ? (
+                                        <PieceCardTitle>
+                                            LOADING
+                                        </PieceCardTitle>
+                                    ) : (
+                                        null
+                                    )}
+                                </PieceCard>                               
                             ))}
                             <PieceCard
                                 key="link-to-gallery"
-                                variants={ItemAnimation}
+                                // variants={ItemAnimation}
                             >
                                 <Link to='/gallery'
                                     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
@@ -213,8 +223,8 @@ export default function GalleryPeek() {
                                     </PieceCardTitle>
                                 </Link>
                             </PieceCard>
-                        </>
-                    ) : (
+                        {/* </> */}
+                    {/* ) : (
                         <>
                             {gallery.slice(0,9).map((i) => (
                                 <PieceCard
@@ -222,12 +232,12 @@ export default function GalleryPeek() {
                                     key={i.slug}
                                     variants={ItemAnimation}
                                 >
-                                    <PieceCardBackground
+                                    <PieceCardBG
                                         style={{
                                             backgroundImage: `url(${i.art_image})`
                                         }}
                                     >
-                                    </PieceCardBackground>
+                                    </PieceCardBG>
                                 </PieceCard>
                             ))}
                             <PieceCard
@@ -243,7 +253,7 @@ export default function GalleryPeek() {
                                 </Link>
                             </PieceCard>
                         </>
-                    )}
+                    )} */}
                 </PieceCardsContainer>
             </GalleryPeekContainer>
         </>

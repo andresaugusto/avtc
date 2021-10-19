@@ -174,7 +174,7 @@ export default function NavBar() {
                     transition={{ duration: 0.2 }} 
                     onClick={closeModals}
                     >
-                        <Link className='links' to='/'>
+                        <Link className='links' to='/#avtc'>
                             <AVTCImg id='avtcImage' src={AVTC} alt="AVTC"/>
                         </Link>
                     </AVTCButton>

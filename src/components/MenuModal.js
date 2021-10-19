@@ -167,8 +167,8 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusMerchandise ?
-                                    <><NHLink to='/#merchandisePeek'><span> - </span>MERCHANDISE<span> - </span></NHLink></>
-                                    : <NHLink to='/#merchandisePeek'>MERCHANDISE</NHLink>
+                                    <><NHLink to='/#merchPeek'><span> - </span>MERCHANDISE<span> - </span></NHLink></>
+                                    : <NHLink to='/#merchPeek'>MERCHANDISE</NHLink>
                                 }
                             </LI>
                             <LI className='links'
@@ -180,13 +180,9 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusContactUs ?
-                                    <><NHLink to='/#contactUs'><span> - </span>CONTACT US<span> - </span></NHLink></>
-                                    : <NHLink to='/#contactUs'>CONTACT US</NHLink>
+                                    <><NHLink smooth to='/#contactUs'><span> - </span>CONTACT US<span> - </span></NHLink></>
+                                    : <NHLink smooth to='/#contactUs'>CONTACT US</NHLink>
                                 }
-                                {/* {focusContactUs ?
-                                    <><A href='/#contactUs'><span> - </span>CONTACT US<span> - </span></A></>
-                                    : <A href='/#contactUs'>CONTACT US</A>
-                                } */}
                             </LI>
                         </UL>
                     </Container>
