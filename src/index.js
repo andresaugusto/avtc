@@ -11,7 +11,7 @@ ReactDOM.render(
   //   <App /> 
   // </Router>,
   <React.StrictMode>
-    <Router basename='/avtc'>
+    <Router basename='/avtc/'>
       <App />
     </Router>
   </React.StrictMode>,
