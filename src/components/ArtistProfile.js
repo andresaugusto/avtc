@@ -12,37 +12,20 @@ import {
 } from "../helperFunctions/avtcContext";
 import { DBURL } from "../helperFunctions/config";
 
-import bottom_bg_img from "../images/streetViewCrop.png";
-import iconInstagram from "../images/iconInstagram.png";
-import iconFacebook from "../images/iconFacebook.png";
-import iconCalendar from "../images/iconCalendar.png";
+import bottom_bg_img from "../media/streetViewCrop.png";
+import iconInstagram from "../media/iconInstagram.png";
+import iconFacebook from "../media/iconFacebook.png";
+import iconCalendar from "../media/iconCalendar.png";
 
 //Page where artist profile is composed
 
 //  //  //  STYLEC COMPONENTS   //  //  //
-
-const Container = styled(motion.div)`
+const ArtistProfileContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  display: grid;
-  justify-items: center;
-  align-items: center;
   color: rgba(255, 255, 255, 0.7);
 `;
-
-const CarouselContainer = styled(motion.div)`
-  margin: 0;
-  padding: 0;
-  /* transform: translate(-50%, -50%);
-    position: relative;
-    left: 50%;
-    top: 50%; */
-
-  display: grid;
-  place-content: center;
-`;
-
 const BottomBGImg = styled(motion.img)`
   z-index: -90;
 
@@ -54,7 +37,7 @@ const BottomBGImg = styled(motion.img)`
 
   margin: 0;
   padding: 0;
-  -webkit-transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%);
   position: absolute;
   left: 50%;
   top: 100%;
@@ -62,7 +45,6 @@ const BottomBGImg = styled(motion.img)`
   -webkit-filter: drop-shadow(0px 2px 2px #000000);
   filter: drop-shadow(0px 2px 2px #000000);
 `;
-
 const ArtistImgContainer = styled.div`
   z-index: -10;
 
@@ -73,14 +55,10 @@ const ArtistImgContainer = styled.div`
 
   margin: 0;
   padding: 0;
-  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   position: fixed;
   left: 50%;
   top: 45%;
-
-  /* display: grid;
-    justify-items: center;
-    align-items: center; */
 
   border-radius: 50%;
   overflow: hidden;
@@ -88,13 +66,8 @@ const ArtistImgContainer = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.7);
   /* border: 2px solid rgba(20, 195, 255, 1); */
 `;
-
-const ArtistImg = styled(motion.img)`
+const ArtistImg = styled.img`
   display: block;
-  /* width: 50vmin; */
-  /* max-width: 70vmin; */
-  /* min-width: inherit;
-    min-height: inherit; */
 
   min-width: inherit;
   min-height: inherit;
@@ -103,150 +76,255 @@ const ArtistImg = styled(motion.img)`
 
   margin: 0;
   padding: 0;
-  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
   position: absolute;
   left: 50%;
   top: 0%;
 `;
-
-const ArtistName = styled.h1`
-  z-index: +5;
-  font-size: 3vh;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-
-  margin: 0;
-  padding: 0;
-  -webkit-transform: translate(-50%, -50%);
-  position: absolute;
-  left: 50%;
-  top: 95%;
-`;
-
-const ArtistInfoContainer = styled(motion.div)`
+const ArtistInfoContainer = styled.div`
   /* margin-top: 90vh; */
 
   margin: 0;
   padding: 0;
-  -webkit-transform: translate(-50%, -0%);
+  transform: translate(-50%, -0%);
   position: absolute;
   left: 50%;
   top: 90%;
 
   padding-top: 10vh;
   width: 100vw;
-  max-width: 1000px;
-  /* height: 200vh; */
-  display: grid;
+  display: flex;
   justify-items: center;
   align-items: start;
 
-  background: rgba(90, 90, 90, 0.7);
+  /* background: rgba(90, 90, 90, 0.7); */
 
-  border-radius: 5vmin 5vmin 0 0;
+  border-radius: .5vmin .5vmin 0 0;
 
-  -webkit-filter: drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.6));
-  filter: drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.6));
+  /* -webkit-filter: drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.6)); */
+
+  backdrop-filter: blur(.5vmin) contrast(65%) invert(100%) sepia(30%) hue-rotate(135deg);
   /* border: 2px solid rgba(255, 255, 255, 1); */
 `;
-
-const InfoSection = styled.div`
-  margin: 5vmin 5vmin 0 5vmin;
-  font-size: 3vmin;
-`;
-
-const InfoSectionTitle = styled.div`
-  text-transform: uppercase;
-  font-size: 4vmin;
-`;
-
-const JobTitle = styled.h1`
-  margin: 0;
-  padding: 2vmin;
-  font-size: 3vmin;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-`;
-
-const Specialty = styled.h1`
-  /* font-size: 2vh; */
-  font-size: 3vmin;
-`;
-
-const SocialMediaContainer = styled(motion.ul)`
-  list-style: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-inline-start: 0;
-
-  width: inherit;
-  /* border-top: 1px solid rgba(255, 255, 255, 0.7); */
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.7); */
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10vmin;
-  margin: 2vmin;
-`;
-
-const SocialMediaItem = styled(motion.li)`
-  overflow: hidden;
-
-  display: grid;
-  justify-items: center;
-  align-items: center;
-`;
-
-const SocialMediaIcon = styled(motion.img)`
-  height: 40%;
-  max-height: 100px;
-
-  -webkit-filter: opacity(80%);
-  filter: opacity(80%);
-`;
-
-const SocialMediaTitle = styled.h1`
-  /* max-width: 15vmin; */
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const ScheduleButton = styled(motion.div)`
-  cursor: pointer;
-  box-sizing: padding-box;
-  margin-block-start: 0;
-  margin-block-end: 0;
-
-  /* color: rgba(90, 90, 90, 1); */
-  text-transform: uppercase;
-  /* font-size: 5vmin; */
-  /* font-weight: 400; */
-  /* background-color: rgba(255, 255, 255, 0.7); */
-  /* background-color: rgba(90, 90, 90, 0.7); */
-  /* line-height: 11vmin; */
-  /* display: inline-block; */
-  padding: 6vmin;
-  /* width: 100%; */
-  letter-spacing: 0.5vmin;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 2vmin;
-
-  -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.6));
-  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.6));
-`;
-
-const BotttomSpacing = styled.div`
+const ArtistName = styled.h1`
+  z-index: +5;
+  
   margin: 0;
   padding: 0;
-  margin-top: 50vmin;
-`;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 95%;
 
-// const swiper = new Swiper(...)
+  font-size: 3vh;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+
+  color: black;
+  font-family: 'New Rocker', serif;
+  /* font-family: 'Quantico', sans-serif; */
+  /* font-family: 'Hepta Slab', serif; */
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'Six Caps', sans-serif; */
+  font-size: 3vmin;
+  letter-spacing: .5vmin;
+  font-weight: 400;
+
+  @media (max-width: 600px) {
+      font-size: 16px;
+      letter-spacing: 2px;
+      font-weight: 400;
+  }
+`;
+const CarouselContainer = styled(motion.div)`
+  min-height: 95vh;
+  height: 95vh;
+  width: 99vw;
+  overflow: hidden;
+  /* padding: 10vh 0; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .8);
+`;
+// const InfoSection = styled.div`
+//   margin: 5vmin 5vmin 0 5vmin;
+//   font-size: 3vmin;
+// `;
+// const InfoSectionTitle = styled.div`
+//   text-transform: uppercase;
+//   font-size: 4vmin;
+// `;
+// const JobTitle = styled.h1`
+//   margin: 0;
+//   padding: 2vmin;
+//   font-size: 3vmin;
+
+//   border-top: 1px solid rgba(255, 255, 255, 0.7);
+// `;
+// const Specialty = styled.h1`
+//   /* font-size: 2vh; */
+//   font-size: 3vmin;
+// `;
+// const SocialMediaContainer = styled(motion.ul)`
+//   list-style: none;
+//   margin-block-start: 0;
+//   margin-block-end: 0;
+//   margin-inline-start: 0;
+//   margin-inline-end: 0;
+//   padding-inline-start: 0;
+
+//   width: inherit;
+//   /* border-top: 1px solid rgba(255, 255, 255, 0.7); */
+//   /* border-bottom: 1px solid rgba(255, 255, 255, 0.7); */
+//   display: grid;
+
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: 10vmin;
+//   margin: 2vmin;
+// `;
+// const SocialMediaItem = styled(motion.li)`
+//   overflow: hidden;
+
+//   display: grid;
+//   justify-items: center;
+//   align-items: center;
+// `;
+// const SocialMediaIcon = styled(motion.img)`
+//   height: 40%;
+//   max-height: 100px;
+
+//   -webkit-filter: opacity(80%);
+//   filter: opacity(80%);
+// `;
+// const SocialMediaTitle = styled.h1`
+//   /* max-width: 15vmin; */
+//   font-size: 15px;
+//   color: rgba(255, 255, 255, 0.7);
+// `;
+// const ScheduleButton = styled(motion.div)`
+//   cursor: pointer;
+//   box-sizing: padding-box;
+//   margin-block-start: 0;
+//   margin-block-end: 0;
+
+//   /* color: rgba(90, 90, 90, 1); */
+//   text-transform: uppercase;
+//   /* font-size: 5vmin; */
+//   /* font-weight: 400; */
+//   /* background-color: rgba(255, 255, 255, 0.7); */
+//   /* background-color: rgba(90, 90, 90, 0.7); */
+//   /* line-height: 11vmin; */
+//   /* display: inline-block; */
+//   padding: 6vmin;
+//   /* width: 100%; */
+//   letter-spacing: 0.5vmin;
+//   border: 1px solid rgba(255, 255, 255, 0.7);
+//   border-radius: 2vmin;
+
+//   -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.6));
+//   filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.6));
+// `;
+// const BotttomSpacing = styled.div`
+//   margin: 0;
+//   padding: 0;
+//   margin-top: 50vmin;
+// `;
 
 //  //  //  VARIABLES   //  //  //
 
+const SectionTitle = styled.div`
+    width: 100vw;
+    /* margin: 4vmin 0; */
+
+    color: black;
+    /* font-family: 'New Rocker', serif; */
+    font-family: 'Quantico', sans-serif;
+    /* font-family: 'Hepta Slab', serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Six Caps', sans-serif; */
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
+    font-weight: 700;
+
+    @media (max-width: 600px) {
+        font-size: 16px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
+`
+const ArtistProfileDataContainer = styled.div`
+  min-width: 50vw;
+
+  z-index: +1;
+  margin-bottom: 25vw;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  
+  color: black;
+  /* font-family: 'New Rocker', serif; */
+  font-family: 'Quantico', sans-serif;
+  /* font-family: 'Hepta Slab', serif; */
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'Six Caps', sans-serif; */
+  font-size: 1.25vmin;
+  letter-spacing: .5vmin;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+
+  @media (max-width: 600px) {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 400;
+  }
+`
+const ArtistProfileLine = styled.div`
+`
+const ContactSocialsContainer = styled.div`
+  width: inherit;
+  width: 20vmin;
+  min-width: 80px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  grid-gap: 3vmin;
+  align-items: center;
+`
+const ArtistProfileEmailButton = styled.a`
+  width: inherit;
+  padding: .5vmin 1vmin;
+  background-color: transparent;
+  border: 2px solid;
+  border-radius: .5vmin;
+
+  color: black;
+  /* font-family: 'New Rocker', serif; */
+  font-family: 'Quantico', sans-serif;
+  /* font-family: 'Hepta Slab', serif; */
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'Six Caps', sans-serif; */
+  font-size: 1.25vmin;
+  letter-spacing: .5vmin;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+
+  @media (max-width: 600px) {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 400;
+  }
+
+`
+const Anchor = styled.a`
+`
+
+//  //  //  MOTION ANIMATIONS //  //  //
 const ItemContainerAnimation = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
@@ -258,7 +336,6 @@ const ItemContainerAnimation = {
     },
   },
 };
-
 const ItemAnimation = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -268,10 +345,9 @@ const ItemAnimation = {
 };
 
 //  //  //  FUNCTION    //  //  //
-
 export default function ArtistProfile({ match }) {
-  //  //  //  SCROLL TO TOP   //  //  //
 
+  //  //  //  SCROLL TO TOP   //  //  //
   function ScrollToTopOnMount() {
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -281,27 +357,17 @@ export default function ArtistProfile({ match }) {
   }
 
   //  //  //  DATA FETCHING FROM DB   //  //  //
-
-  useEffect(() => {
-    fetchArtistInfo();
-  }, []);
-
+  useEffect(() => { fetchArtistInfo() }, []);
   const [artist, setArtist] = useState([]);
-
   const fetchArtistInfo = async () => {
     const rtstData = await fetch(`${DBURL}/artists/${match.params.artistSlug}`);
     const rtst = await rtstData.json();
-
     setArtist(rtst);
-
-    // console.log(rtst)
   };
 
   //  //  //  PIECE SETTINGS    //  //  //
-
   const { piece, setPiece } = useContext(PieceContext);
   const { showPiece, setShowPiece } = useContext(PieceModalToggleContext);
-
   const fetchPiece = async (i) => {
     const picData = await fetch(`${DBURL}/characters/${i}`);
     const pic = await picData.json();
@@ -315,7 +381,6 @@ export default function ArtistProfile({ match }) {
   };
 
   //  //  //  CONTACT //  //  //
-
   const contactArtist = [
     [iconCalendar, "Book Now"],
     [iconInstagram, "Instagram", artist.instagram],
@@ -327,14 +392,47 @@ export default function ArtistProfile({ match }) {
   return (
     <div>
       <ScrollToTopOnMount />
-      <Container>
+      <ArtistProfileContainer>
         <ArtistImgContainer>
           <ArtistImg src={artist.profile_image} />
         </ArtistImgContainer>
 
         <ArtistName>{artist.name}</ArtistName>
+      <ArtistInfoContainer>
+        <ArtistProfileDataContainer>
+          <SectionTitle>{artist.job_title}</SectionTitle>
+          <br/>
+          <br/>
+          <br/>
+          <CarouselContainer>
+            <ArtistCarousel artistSlug={match.params.artistSlug} />
+          </CarouselContainer>
+          <br/>
+          <br/>
+          <br/>
+          <SectionTitle>specialties</SectionTitle>
+          <br/>
+          {artist.specialty_one ? (
+            <ArtistProfileLine>{artist.specialty_one}</ArtistProfileLine>
+          ) : null}
+          {artist.specialty_two ? (
+            <ArtistProfileLine>{artist.specialty_two}</ArtistProfileLine>
+          ) : null}
+          {artist.specialty_three ? (
+            <ArtistProfileLine>{artist.specialty_three}</ArtistProfileLine>
+          ) : null}
+          <br/>
+          <br/>
+          {artist.bio ? <p style={{maxWidth: '95vw'}}>"------<br/>{artist.bio}<br/>------"</p> : null}
 
-        <ArtistInfoContainer>
+
+
+
+
+        </ArtistProfileDataContainer>
+      </ArtistInfoContainer>
+
+        {/* <ArtistInfoContainer>
           <>{<JobTitle>{artist.job_title}</JobTitle>}</>
 
           <InfoSection></InfoSection>
@@ -357,7 +455,6 @@ export default function ArtistProfile({ match }) {
           </InfoSection>
 
           <InfoSection>
-            {/* <LoremIpsum p={1}/> */}
             {artist.bio ? <p>{artist.bio}</p> : null}
           </InfoSection>
 
@@ -399,7 +496,6 @@ export default function ArtistProfile({ match }) {
                     transition={{ duration: 0.08 }}
                   >
                     <SocialMediaIcon src={i[0]} alt={i[0]} id={i[0]} />
-                    {/* <SocialMediaTitle>{i[1]}</SocialMediaTitle> */}
                   </SocialMediaItem>
                 </a>
               ))}
@@ -409,8 +505,9 @@ export default function ArtistProfile({ match }) {
           <BotttomSpacing />
 
           <BottomBGImg src={bottom_bg_img} />
-        </ArtistInfoContainer>
-      </Container>
+        </ArtistInfoContainer> */}
+        
+      </ArtistProfileContainer>
     </div>
   );
 }

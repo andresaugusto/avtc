@@ -4,7 +4,7 @@ import styled from "styled-components";
 import GalleryCarousel from "./Gallery/GalleryCarousel";
 import OriginalGallery from "./Gallery/OriginalGallery";
 
-import bottom_bg_img from "../images/streetViewCrop.png";
+import StreetViewCrop from "../media/streetViewCrop.png";
 
 //  //  //  STYLED COMPONENTS   //  //  //
 
@@ -56,7 +56,7 @@ export default function Gallery() {
       </head>
       <Container>
         <OriginalGallery />
-        <BottomBGImg src={bottom_bg_img} />
+        <BottomBGImg src={StreetViewCrop} />
       </Container>
     </>
   );

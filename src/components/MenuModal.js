@@ -1,6 +1,6 @@
 import { useState } from 'react'
-// import { Link } from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link'
+import { Link } from 'react-router-dom'
+import { NavHashLink as NHLink } from 'react-router-hash-link'
 import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -18,8 +18,11 @@ const Container = styled(motion.div)`
     z-index: 50;
     top: 0;
     position: fixed;
-    background: linear-gradient(180deg, rgba(255, 206, 132, 0.9) -3.44%, rgba(255, 207, 135, 0.41) 79.87%, rgba(255, 207, 135, 0.33144) 93.74%, rgba(255, 207, 135, 0.28) 100%), rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(15px);
+    /* background: linear-gradient(180deg, rgba(255, 206, 132, 0.9) -3.44%, rgba(255, 207, 135, 0.41) 79.87%, rgba(255, 207, 135, 0.33144) 93.74%, rgba(255, 207, 135, 0.28) 100%), rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(15px); */
+
+    backdrop-filter: invert(0%) sepia(70%) hue-rotate(155deg) blur(15px);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) -3.44%, rgba(0, 0, 0, 0.41) 79.87%, rgba(0, 0, 0, 0.33144) 93.74%, rgba(0, 0, 0, 0.28) 100%), rgba(0, 0, 0, 0.22);
 `
 
 const UL = styled(motion.ul)`
@@ -125,13 +128,9 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusHome ?
-                                    <><Link className='links' to='/'><span> - </span>HOME<span> - </span></Link></>
-                                    : <Link className='links' to='/'>HOME</Link>
+                                    <><NHLink className='links' to='/#avtc'><span> - </span>HOME<span> - </span></NHLink></>
+                                    : <NHLink className='links' to='/#avtc'>HOME</NHLink>
                                 }
-                                {/* {focusHome ?
-                                    <><A href='/'><span> - </span>HOME<span> - </span></A></>
-                                    : <A href='/'>HOME</A>
-                                } */}
                             </LI>
                             <LI className='links'
                                 onMouseEnter={() => setFocusGallery(true)}
@@ -142,13 +141,9 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusGallery ?
-                                    <><Link className='links' to='/gallery'><span> - </span>GALLERY<span> - </span></Link></>
-                                    : <Link className='links' to='/gallery'>GALLERY</Link>
+                                    <><NHLink className='links' to='/gallery'><span> - </span>GALLERY<span> - </span></NHLink></>
+                                    : <NHLink className='links' to='/gallery'>GALLERY</NHLink>
                                 }
-                                {/* {focusGallery ?
-                                    <><A href='/gallery'><span> - </span>GALLERY<span> - </span></A></>
-                                    : <A href='/gallery'>GALLERY</A>
-                                } */}
                             </LI>
                             <LI className='links'
                                 onMouseEnter={() => setFocusResidentArtists(true)}
@@ -159,13 +154,9 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusResidentArtists ?
-                                    <><Link to='/#artistCards'><span> - </span>RESIDENT ARTISTS<span> - </span></Link></>
-                                    : <Link to='/#artistCards'>RESIDENT ARTISTS</Link>
+                                    <><NHLink to='/#artistCards'><span> - </span>RESIDENT ARTISTS<span> - </span></NHLink></>
+                                    : <NHLink to='/#artistCards'>RESIDENT ARTISTS</NHLink>
                                 }
-                                {/* {focusResidentArtists ?
-                                    <><A href='/#artistCards'><span> - </span>RESIDENT ARTISTS<span> - </span></A></>
-                                    : <A href='/#artistCards'>RESIDENT ARTISTS</A>
-                                } */}
                             </LI>
                             <LI className='links'
                                 onMouseEnter={() => setFocusMerchandise(true)}
@@ -176,14 +167,9 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusMerchandise ?
-                                    <><Link to='/#merchandisePeek'><span> - </span>MERCHANDISE<span> - </span></Link></>
-                                    : <Link to='/#merchandisePeek'>MERCHANDISE</Link>
+                                    <><NHLink to='/#merchPeek'><span> - </span>MERCHANDISE<span> - </span></NHLink></>
+                                    : <NHLink to='/#merchPeek'>MERCHANDISE</NHLink>
                                 }
-                
-                                {/* {focusMerchandise ?
-                                    <><A href='/#merchandisePeek'><span> - </span>MERCHANDISE<span> - </span></A></>
-                                    : <A href='/#merchandisePeek'>MERCHANDISE</A>
-                                } */}
                             </LI>
                             <LI className='links'
                                 onMouseEnter={() => setFocusContactUs(true)}
@@ -194,13 +180,9 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
                                 onClick={closeAndUnfocusTitles}
                                 >
                                 {focusContactUs ?
-                                    <><Link to='/#contactUs'><span> - </span>CONTACT US<span> - </span></Link></>
-                                    : <Link to='/#contactUs'>CONTACT US</Link>
+                                    <><NHLink smooth to='/#contactUs'><span> - </span>CONTACT US<span> - </span></NHLink></>
+                                    : <NHLink smooth to='/#contactUs'>CONTACT US</NHLink>
                                 }
-                                {/* {focusContactUs ?
-                                    <><A href='/#contactUs'><span> - </span>CONTACT US<span> - </span></A></>
-                                    : <A href='/#contactUs'>CONTACT US</A>
-                                } */}
                             </LI>
                         </UL>
                     </Container>
@@ -218,21 +200,21 @@ export default function MenuModal({ showMenu, toggleMenu, closeModals }) {
 //     return (
 //         <nav>
 
-            // {/* <Link className='links' to='/'>
+            // {/* <NHLink className='links' to='/'>
             //     <h1 className='home-button'>HOME</h1>
-            // </Link>
-            // <Link className='links' to='/gallery'>
+            // </NHLink>
+            // <NHLink className='links' to='/gallery'>
             //     <h1 className='gallery-button'>GALLERY</h1>
-            // </Link>
-            // <Link className='links' to='/'>
+            // </NHLink>
+            // <NHLink className='links' to='/'>
             //     <h1 className='resident-artists-button'>RESIDENT ARTISTS</h1>
-            // </Link>
-            // <Link className='links' to='/'>
+            // </NHLink>
+            // <NHLink className='links' to='/'>
             //     <h1 className='merchandise-button'>MERCHANDISE</h1>
-            // </Link>
-            // <Link className='links' to='/'>
+            // </NHLink>
+            // <NHLink className='links' to='/'>
             //     <h1 className='contact-us-button'>CONTACT US</h1>
-            // </Link> */}
+            // </NHLink> */}
 
 //             <ul className='menu-links'>
 //                 <li className='links'>
