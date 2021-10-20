@@ -18,13 +18,14 @@ import { DBURL } from "../../helperFunctions/config";
 const CarouselContainer = styled.div`
   overflow: hidden;
   height: 90vmin;
-  width: 90vmin;
+  width: 99vw;
   max-height: 900px;
   max-width: 900px;
   /* background-color: pink; */
 
   /* border-radius: 2vmin; */
 `;
+
 const Slider1Container = styled(motion.div)`
   overflow: cover;
   /* background: rgba(255, 255, 255, 0.07); */

@@ -144,7 +144,7 @@ export default function GalleryPeek() {
     
     useEffect(() => {fetchGallery()}, []);
     const [ gallery, setGallery ] = useState([LoadingGif]);
-    const [ pieceCardBGImages, setPieceCardBGImages ] = useState((Array.from(Array(9).keys()).map((i)=>i = LoadingGif)));
+    const [ pieceCardBGImages, setPieceCardBGImages ] = useState((Array.from(Array(9).keys()).map((i)=>i = [i, LoadingGif])));
     // console.log(pieceCardBGImages)
     const fetchGallery = async () => {
       
@@ -152,7 +152,7 @@ export default function GalleryPeek() {
       const gall = await gallData.json();
 
       setGallery(gall);
-      setPieceCardBGImages((Array.from(gall.slice(0,9).map((i)=> i.value = i.art_image))))
+      setPieceCardBGImages((Array.from(gall.slice(0,9).map((i)=> i.value = [i.slug, i.art_image]))))
     //   console.log(pieceCardBGImages)
     
     }
@@ -192,14 +192,14 @@ export default function GalleryPeek() {
                         {/* <> */}
                             {pieceCardBGImages.map((i) => (
                                 <PieceCard
-                                    // key={`PieceCard${i}`}
-                                    // onClick={gallery[0]===LoadingGif ? (null) : (() => fetchPiece(i.slug))}
+                                    key={`PieceCard${i[0]}`}
+                                    onClick={gallery[0]===LoadingGif ? (null) : (() => fetchPiece(i[0]))}
                                     // variants={ItemAnimation}
                                 >
                                     <PieceCardBG
                                         style={{
                                             // backgroundImage: (gallery[0]===LoadingGif ? (`url(${LoadingGif})`) : (`url(${i.art_image})`),
-                                            backgroundImage: `url(${i})`
+                                            backgroundImage: `url(${i[1]})`
                                         }}
                                     />
                                     {gallery[0]===LoadingGif ? (

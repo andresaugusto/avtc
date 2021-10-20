@@ -47,7 +47,7 @@ import StreetViewCrop from "../../media/streetViewCrop.png"
 
 const ContactContainer = styled.div`
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   overflow: hidden;
   position: relative;
@@ -58,8 +58,8 @@ const ContactContainer = styled.div`
 `
 const ContactBackground = styled.div`
   box-sizing: border-box;
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  width: 100vw;
   overflow: hidden;
   position: absolute;
   background-image: url(${StreetViewCrop});
@@ -90,7 +90,8 @@ const SectionTitle = styled.div`
     }
 `
 const ContactInfoContainer = styled.div`
-  width: 50vw;
+  min-width: 50vw;
+
   z-index: +1;
   margin-bottom: 25vw;
 
@@ -105,7 +106,7 @@ const ContactInfoContainer = styled.div`
   /* font-family: 'Hepta Slab', serif; */
   /* font-family: 'Oswald', sans-serif; */
   /* font-family: 'Six Caps', sans-serif; */
-  font-size: 1.5vmin;
+  font-size: 1.25vmin;
   letter-spacing: .5vmin;
   font-weight: 700;
   text-align: center;
@@ -121,14 +122,15 @@ const ContactInfoLine = styled.div`
 `
 const ContactSocialsContainer = styled.div`
   width: inherit;
-  max-width: 20vmin;
+  width: 20vmin;
+  min-width: 80px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   grid-gap: 3vmin;
   align-items: center;
 `
-const ContactInfoEmailButton = styled.button`
+const ContactInfoEmailButton = styled.a`
   width: inherit;
   padding: .5vmin 1vmin;
   background-color: transparent;
@@ -141,7 +143,7 @@ const ContactInfoEmailButton = styled.button`
   /* font-family: 'Hepta Slab', serif; */
   /* font-family: 'Oswald', sans-serif; */
   /* font-family: 'Six Caps', sans-serif; */
-  font-size: 1.5vmin;
+  font-size: 1.25vmin;
   letter-spacing: .5vmin;
   font-weight: 700;
   text-align: center;
